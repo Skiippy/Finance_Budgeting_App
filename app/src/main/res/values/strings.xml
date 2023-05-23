@@ -6,4 +6,6 @@
     <string name="login">Login</string>
     <string name="forgetPassword">Forgot Password?</string>
     <string name="pocketTrackLogo">PocketTrack Logo</string>
+    <string name="createAccount">Create Account</string>
+    <string name="confirmPassword">Confirm Password</string>
 </resources>

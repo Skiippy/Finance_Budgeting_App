@@ -33,6 +33,7 @@
         app:srcCompat="@drawable/logo" />
 
     <LinearLayout
+
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="600dp"
@@ -73,9 +74,31 @@
             android:textColor="@color/text"
             android:textSize="16sp" />
 
-
         <EditText
             android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints="password"
+            android:background="@drawable/edit_text_background"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/text"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/confirmPassword"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editTextTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
@@ -91,11 +114,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             style="@android:style/Widget.Button"
-            android:layout_width="96dp"
+            android:layout_width="128dp"
             android:layout_height="48dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/button_background"
-            android:text="@string/login"
+            android:text="@string/createAccount"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -104,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/forgetPassword"
+            android:text="@string/login"
             android:textColor="@color/text" />
 
     </LinearLayout>
