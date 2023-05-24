@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -50,7 +49,9 @@
             android:text="@string/email"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextEmailAddress" />
+            android:labelFor="@+id/editTextTextEmailAddress"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
@@ -74,7 +75,9 @@
             android:text="@string/password"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextPassword" />
+            android:labelFor="@+id/editTextTextPassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
         <EditText
             android:id="@+id/editTextTextPassword"
@@ -92,13 +95,15 @@
 
         <TextView
             android:id="@+id/textViewConfirmPassword"
-            android:layout_width="350dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/confirmPassword"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextConfirmPassword" />
+            android:labelFor="@+id/editTextTextConfirmPassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
         <EditText
             android:id="@+id/editTextTextConfirmPassword"
