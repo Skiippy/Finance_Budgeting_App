@@ -19,13 +19,14 @@
             android:id="@+id/back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/back_arrow_icon"/>
+            android:src="@drawable/back_arrow_icon"
+            android:contentDescription="@string/back_icon" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Questionnaire"
+            android:text="@string/questionnaire"
             android:textColor="@color/text"
             android:textAlignment="center"/>
     </LinearLayout>
@@ -33,7 +34,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:background="@drawable/questionnaire_backgound"
+        android:background="@drawable/questionnaire_background"
         android:padding="10dp"
 
 
@@ -60,7 +61,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="What is your Average Monthly Salary:"
+                    android:text="@string/what_is_your_average_monthly_salary"
                     android:labelFor="@+id/edtAverageSalary"
                     android:textColor="@color/text" />
 
@@ -71,7 +72,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/text_edit"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:autofillHints="" />
 
             </LinearLayout>
 
@@ -86,7 +88,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="What are your average Monthly Expenses:"
+                    android:text="@string/what_are_your_average_monthly_expenses"
                     android:textColor="@color/text"
                     android:labelFor="@+id/edtAverageExpense" />
 
@@ -97,7 +99,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/text_edit"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:autofillHints="" />
 
             </LinearLayout>
 
@@ -111,7 +114,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Do you have an emergency fund:"
+                    android:text="@string/do_you_have_an_emergency_fund"
                     android:textColor="@color/text" />
 
                 <RadioGroup
@@ -123,7 +126,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yes"
+                        android:text="@string/yes"
                         android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -134,7 +137,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No"
+                        android:text="@string/no"
                         android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -156,7 +159,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="what is the value of the emergency fund:"
+                    android:text="@string/what_is_the_value_of_the_emergency_fund"
                     android:textColor="@color/text"
                     android:labelFor="@+id/edtEmergencyFund"/>
 
@@ -167,7 +170,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/text_edit"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:autofillHints="" />
 
             </LinearLayout>
 
@@ -181,7 +185,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Do you have a retirement fund:"
+                    android:text="@string/do_you_have_a_retirement_fund"
                     android:textColor="@color/text" />
 
                 <RadioGroup
@@ -193,7 +197,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yes"
+                        android:text="@string/yes"
                         android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -204,7 +208,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No"
+                        android:text="@string/no"
                         android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -226,7 +230,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="What is the value of the retirement fund:"
+                    android:text="@string/what_is_the_value_of_the_retirement_fund"
                     android:textColor="@color/text"
                     android:labelFor="@+id/edtRetirementFund"/>
 
@@ -237,7 +241,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/text_edit"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:autofillHints="" />
 
             </LinearLayout>
 
@@ -245,10 +250,10 @@
             <androidx.appcompat.widget.AppCompatButton
 
                 android:id="@+id/btnQuestionnaireSubmit"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:background="@drawable/button_background"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textColor="#000000"
                 app:rippleColor="@color/accent"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -9,4 +9,24 @@
     <string name="pocketTrackLogo">PocketTrack Logo</string>
     <string name="createAccount">Create Account</string>
     <string name="confirmPassword">Confirm Password</string>
+    <string name="bitcoin_icon">bitcoin_icon</string>
+    <string name="investing">Investing</string>
+    <string name="submit">Submit</string>
+    <string name="questionnaire">Questionnaire</string>
+    <string name="what_is_your_average_monthly_salary">What is your Average Monthly Salary:</string>
+    <string name="what_are_your_average_monthly_expenses">What are your average Monthly Expenses:</string>
+    <string name="do_you_have_an_emergency_fund">Do you have an emergency fund:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="what_is_the_value_of_the_emergency_fund">what is the value of the emergency fund:</string>
+    <string name="do_you_have_a_retirement_fund">Do you have a retirement fund:</string>
+    <string name="lowercase_yes">Yes</string>
+    <string name="what_is_the_value_of_the_retirement_fund">What is the value of the retirement fund:</string>
+    <string name="back_icon">back_icon</string>
+    <string name="support">Support</string>
+    <string name="profile_icon">profile_icon</string>
+    <string name="support_icon">support_icon</string>
+    <string name="money_icon">money_icon</string>
+    <string name="goals_icon">goals_icon</string>
+    <string name="home_icon">home_icon</string>
 </resources>

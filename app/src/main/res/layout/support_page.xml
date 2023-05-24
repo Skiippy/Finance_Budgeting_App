@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,12 +43,13 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/bitcoin_icon" />
+                    android:src="@drawable/bitcoin_icon"
+                    android:contentDescription="@string/bitcoin_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Investing"
+                    android:text="@string/investing"
                     android:textColor="@color/text"/>
 
             </LinearLayout>
@@ -86,12 +86,13 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/bitcoin_icon" />
+                        android:src="@drawable/bitcoin_icon"
+                        android:contentDescription="@string/bitcoin_icon" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Investing"
+                        android:text="@string/investing"
                         android:textColor="@color/text"/>
 
                 </LinearLayout>
@@ -128,12 +129,13 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/bitcoin_icon" />
+                        android:src="@drawable/bitcoin_icon"
+                        android:contentDescription="@string/bitcoin_icon" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Investing"
+                        android:text="@string/investing"
                         android:textColor="@color/text"/>
 
                 </LinearLayout>
@@ -173,20 +175,22 @@
             android:id="@+id/back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/back_arrow_icon"/>
+            android:src="@drawable/back_arrow_icon"
+            android:contentDescription="@string/back_icon" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Support"
+            android:text="@string/support"
             android:textColor="@color/text"
             android:textAlignment="center"/>
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/profile_icon"/>
+            android:src="@drawable/profile_icon"
+            android:contentDescription="@string/profile_icon" />
 
     </LinearLayout>
 
@@ -203,7 +207,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/home_icon"/>
+            android:src="@drawable/home_icon"
+            android:contentDescription="@string/home_icon"/>
 
         <View
             android:layout_width="0dp"
@@ -213,7 +218,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/goals_icon"/>
+            android:src="@drawable/goals_icon"
+            android:contentDescription="@string/goals_icon"/>
 
         <View
             android:layout_width="0dp"
@@ -223,7 +229,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/money_icon"/>
+            android:src="@drawable/money_icon"
+            android:contentDescription="@string/money_icon"/>
 
         <View
             android:layout_width="0dp"
@@ -233,7 +240,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/support_icon"/>
+            android:src="@drawable/support_icon"
+            android:contentDescription="@string/support_icon"/>
 
     </LinearLayout>
 
