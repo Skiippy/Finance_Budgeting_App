@@ -37,7 +37,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:background="@drawable/questionnaire_backgound"
+        android:background="@drawable/questionnaire_background"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="30dp"
@@ -49,7 +49,8 @@
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textColor="@color/text"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:labelFor="@+id/editTextTextEmailAddress" />
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
@@ -72,7 +73,8 @@
             android:layout_marginTop="32dp"
             android:text="@string/password"
             android:textColor="@color/text"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:labelFor="@+id/editTextTextPassword" />
 
         <EditText
             android:id="@+id/editTextTextPassword"
@@ -95,7 +97,8 @@
             android:layout_marginTop="32dp"
             android:text="@string/confirmPassword"
             android:textColor="@color/text"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:labelFor="@+id/editTextTextConfirmPassword" />
 
         <EditText
             android:id="@+id/editTextTextConfirmPassword"
@@ -112,10 +115,10 @@
             android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/buttonSignup"
             style="@android:style/Widget.Button"
-            android:layout_width="128dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/button_background"
             android:text="@string/createAccount"
