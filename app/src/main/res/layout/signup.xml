@@ -40,12 +40,12 @@
         android:background="@drawable/questionnaire_backgound"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="50dp"
+        android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/textViewEmail"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textColor="@color/text"
@@ -53,7 +53,7 @@
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:autofillHints="emailAddress"
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/textViewPassword"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/password"
@@ -76,7 +76,7 @@
 
         <EditText
             android:id="@+id/editTextTextPassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:autofillHints="password"
@@ -90,7 +90,7 @@
 
         <TextView
             android:id="@+id/textViewConfirmPassword"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/confirmPassword"
@@ -99,7 +99,7 @@
 
         <EditText
             android:id="@+id/editTextTextConfirmPassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:autofillHints="password"
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/login"
+            android:text="@string/loginUnderlined"
             android:textColor="@color/text" />
 
     </LinearLayout>
