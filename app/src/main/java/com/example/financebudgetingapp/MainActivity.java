@@ -19,13 +19,13 @@ private  androidx.appcompat.widget.AppCompatButton btnSignup;
         btnSignup = (AppCompatButton) findViewById(R.id.buttonSignup);
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openQuestionaire();
+            public void onClick(View view) {
+                openQuestionnaire();
             }
         });
     }
-
-    public void openQuestionaire() {
+        public void openQuestionnaire() {
         Intent intent = new Intent(this, Questionaire.class);
+        startActivity(intent);
     }
 }
