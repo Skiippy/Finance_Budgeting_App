@@ -95,7 +95,7 @@
 
         <TextView
             android:id="@+id/textViewConfirmPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/confirmPassword"
