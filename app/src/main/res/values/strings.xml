@@ -8,4 +8,12 @@
     <string name="pocketTrackLogo">PocketTrack Logo</string>
     <string name="createAccount">Create Account</string>
     <string name="confirmPassword">Confirm Password</string>
+    <string name="Goal_setting">String</string>
+    <string name="Goal_Setting">Goal Setting</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Submit">Submit</string>
+    <string name="Goal_s">Goal Setting</string>
+    <string name="Goal_Name">Goal Name</string>
+    <string name="Goal_Amount">Goal Amount</string>
+    <string name="Goal_Logo">TODO</string>
 </resources>
