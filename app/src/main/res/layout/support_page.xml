@@ -61,7 +61,8 @@
                     android:id="@+id/btnExpandText"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/back_arrow_icon"
+                    android:src="@drawable/arrow_downwards"
+                    android:layout_marginRight="5dp"
                     android:background="?attr/selectableItemBackgroundBorderless"/>
 
             </LinearLayout>
@@ -185,11 +186,12 @@
         android:padding="10dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/back_arrow_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back_icon" />
 
         <View
@@ -210,10 +212,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <ImageView
+        <ImageButton
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/profile_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/profile_icon" />
 
 
@@ -231,6 +234,7 @@
         android:padding="10dp">
 
         <ImageView
+            android:id="@+id/btnHomePage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/home_icon"
@@ -242,6 +246,7 @@
             android:layout_weight="1"/>
 
         <ImageView
+            android:id="@+id/btnGoalsPage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/goals_icon"
