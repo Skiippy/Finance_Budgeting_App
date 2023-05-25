@@ -488,6 +488,7 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/btnGoalsPage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/goals_icon"
@@ -500,6 +501,7 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/btnSupportPage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/support_icon"

@@ -12,6 +12,12 @@
         android:theme="@style/Theme.FinanceBudgetingApp"
         tools:targetApi="31">
         <activity
+            android:name=".GoalsPage"
+            android:exported="false" />
+        <activity
+            android:name=".OverviewPage"
+            android:exported="false" />
+        <activity
             android:name=".SupportPage"
             android:exported="false" />
         <activity

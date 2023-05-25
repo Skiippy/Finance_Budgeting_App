@@ -19,14 +19,14 @@ public class Questionaire extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startSupportPage();
+                startOverviewPage();
             }
         });
 
     }
 
-    public void startSupportPage(){
-        Intent intent = new Intent(this, SupportPage.class);
+    public void startOverviewPage(){
+        Intent intent = new Intent(this, OverviewPage.class);
         startActivity(intent);
     }
 
