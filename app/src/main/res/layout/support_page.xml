@@ -7,6 +7,46 @@
 
     <!--header-->
 
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/support"
+            android:textColor="@color/text"
+            android:textAlignment="center"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/profile_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/profile_icon" />
+
+
+
+    </LinearLayout>
+
 
 
     <!--body-->
@@ -212,52 +252,7 @@
 
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:padding="10dp"
-        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/back_arrow_icon"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back_icon" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/support"
-            android:textColor="@color/text"
-            android:textAlignment="center"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/profile_icon"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/profile_icon" />
-
-
-
-    </LinearLayout>
 
 
     <!--nav-->

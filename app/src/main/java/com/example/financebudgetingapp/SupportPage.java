@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,13 @@ public class SupportPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.support_page);
 
+        ImageView btnSupportPage = (ImageView) findViewById(R.id.btnHomePage);
+        ImageView btnGoalsPage = (ImageView) findViewById(R.id.btnGoalsPage);
+
+        btnSupportPage.setOnClickListener(v -> startOverviewPage());
+        btnGoalsPage.setOnClickListener(v -> startGoalsPage());
+
+        //defining variable for changing drawables
         @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_left_image = getResources().getDrawable(R.drawable.arrow_left);
         @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards_image = getResources().getDrawable(R.drawable.arrow_downwards);
 
@@ -45,4 +54,15 @@ public class SupportPage extends AppCompatActivity {
         });
 
     }
+
+    public void startOverviewPage(){
+        Intent intent = new Intent(this, OverviewPage.class);
+        startActivity(intent);
+    }
+
+    public void startGoalsPage(){
+        Intent intent = new Intent(this, GoalsPage.class);
+        startActivity(intent);
+    }
+
 }
