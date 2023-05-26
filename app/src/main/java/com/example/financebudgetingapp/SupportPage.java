@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,7 +26,7 @@ public class SupportPage extends AppCompatActivity {
         @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_left_image = getResources().getDrawable(R.drawable.arrow_left);
         @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards_image = getResources().getDrawable(R.drawable.arrow_downwards);
 
-        ImageButton IbtnExpandText = (ImageButton) findViewById(R.id.btnExpandText);
+        ImageButton IbtnExpandText = (ImageButton) findViewById(R.id.btnExpandText0);
         TextView descriptionText = (TextView) findViewById(R.id.descriptionText);
 
         IbtnExpandText.setOnClickListener(new View.OnClickListener() {

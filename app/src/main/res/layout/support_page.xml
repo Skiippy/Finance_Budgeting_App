@@ -43,7 +43,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/bitcoin_icon"
+                    android:src="@drawable/investion_icon"
                     android:contentDescription="@string/bitcoin_icon" />
 
                 <TextView
@@ -58,7 +58,7 @@
                     android:layout_weight="1"/>
 
                 <ImageButton
-                    android:id="@+id/btnExpandText"
+                    android:id="@+id/btnExpandText0"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrow_downwards"
@@ -76,8 +76,8 @@
                     android:id="@+id/descriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor..."
+                    android:maxLines="3"
+                    android:text="@string/InvestingInfo"
                     android:textColor="@color/text"/>
 
             </LinearLayout>
@@ -92,23 +92,40 @@
                 android:padding="10dp"
                 android:layout_marginBottom="20dp">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="10dp">
 
+
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/bitcoin_icon"
+                        android:src="@drawable/saving_icon"
                         android:contentDescription="@string/bitcoin_icon" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/investing"
+                        android:text="@string/Saving"
                         android:textColor="@color/text"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <ImageButton
+                        android:id="@+id/btnExpandText1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/arrow_downwards"
+                        android:layout_marginRight="5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+
 
                 </LinearLayout>
 
@@ -120,7 +137,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor..."
+                        android:maxLines="3"
+                        android:text="@string/SavingInfo"
                         android:textColor="@color/text"/>
 
                 </LinearLayout>
@@ -148,10 +166,25 @@
                         android:contentDescription="@string/bitcoin_icon" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/investing"
                         android:textColor="@color/text"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <ImageButton
+                        android:id="@+id/btnExpandText2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/arrow_downwards"
+                        android:layout_marginRight="5dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+
 
                 </LinearLayout>
 
@@ -163,8 +196,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="3"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor..."
                         android:textColor="@color/text"/>
+
+
 
                 </LinearLayout>
 
