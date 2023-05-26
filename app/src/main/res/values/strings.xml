@@ -46,5 +46,10 @@
     <string name="SavingInfo">Savings comprise the amount of money left over after spending. People may save for various life goals or aspirations such as retirement, a child\'s college education, the down payment for a home or car, a vacation, or several other examples.
         \n\nSavings may commonly be earmarked for emergencies. For example, Sasha’s monthly paycheck is $5,000. Expenses include a $1,300 rent payment, a $450 car payment, a $500 student loan payment, a $300 credit card payment, $250 for groceries, $75 for utilities, $75 for cellphone service, and $100 for gas. Since Sasha\'s monthly income is $5,000 and monthly expenses are $3,050, there is $1,950 leftover as savings. If Sasha maintains this excess as savings and later faces an emergency, there will be some money to live on while resolving the issue.
         \n\nIf one is unable to maintain savings, they may be said to be living paycheck to paycheck. If such a person experiences an emergency, there is often not enough money saved up to live on and they may risk falling into debt or bankruptcy.</string>
+    <string name="tertiary">Tertiary</string>
+    <string name="goal">Goal</string>
+    <string name="secondary">Secondary</string>
+    <string name="primary">Primary</string>
+    <string name="Image">Image</string>
 
 </resources>
