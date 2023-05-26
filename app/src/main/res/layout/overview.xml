@@ -61,6 +61,20 @@
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ProgressBar
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:max="100"
+                        android:progress="60" />
+                </LinearLayout>
+
                 <!-- Expenditure Text -->
 
                 <!-- Income and Expenditure Progress Bars -->
@@ -80,20 +94,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        tools:ignore="UselessParent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Progress Bar 1"
-                            android:textColor="@android:color/white" />
+                        android:orientation="vertical">
 
                         <ProgressBar
-                            android:layout_width="match_parent"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
                             android:max="100"
-                            android:progress="70" />
+                            android:progress="30" />
                     </LinearLayout>
 
 
@@ -124,95 +133,110 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
                         android:text="Groceries"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="80" />
+                        android:progress="70" />
                 </LinearLayout>
 
                 <!-- Progress Bar 2 for Needs -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
                         android:text="Housing"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="40" />
+                        android:progress="90" />
                 </LinearLayout>
 
                 <!-- Progress Bar 3 for Needs -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
                         android:text="Vehicle"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="70" />
+                        android:progress="50" />
                 </LinearLayout>
 
                 <!-- Progress Bar 4 for Needs -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
                         android:text="Insurance"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="20" />
+                        android:progress="90" />
                 </LinearLayout>
 
                 <!-- Progress Bar 5 for Needs -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
                         android:text="Debts"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="50" />
+                        android:progress="40" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -241,95 +265,110 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 1"
+                        android:layout_weight="0.2"
+                        android:text="Eating Out"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="60" />
+                        android:progress="90" />
                 </LinearLayout>
 
                 <!-- Progress Bar 2 for Wants -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 2"
+                        android:layout_weight="0.2"
+                        android:text="Travel"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="80" />
+                        android:progress="40" />
                 </LinearLayout>
 
                 <!-- Progress Bar 3 for Wants -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 3"
+                        android:layout_weight="0.2"
+                        android:text="Hobbies"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="40" />
+                        android:progress="80" />
                 </LinearLayout>
 
                 <!-- Progress Bar 4 for Wants -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 4"
+                        android:layout_weight="0.2"
+                        android:text="entertainment"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="90" />
+                        android:progress="75" />
                 </LinearLayout>
 
                 <!-- Progress Bar 5 for Wants -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 5"
+                        android:layout_weight="0.2"
+                        android:text="Clothing"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="50" />
+                        android:progress="55" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -358,55 +397,64 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 1"
+                        android:layout_weight="0.2"
+                        android:text="Absa Savings"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="80" />
+                        android:progress="30" />
                 </LinearLayout>
 
                 <!-- Progress Bar 2 for Investments -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 2"
+                        android:layout_weight="0.2"
+                        android:text="NASDAQ: TSLA"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="70" />
+                        android:progress="65" />
                 </LinearLayout>
 
                 <!-- Progress Bar 3 for Investments -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 3"
+                        android:layout_weight="0.2"
+                        android:text="Ethereum"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
                         android:progress="90" />
                 </LinearLayout>
@@ -415,38 +463,44 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 4"
+                        android:layout_weight="0.2"
+                        android:text="Retail Bonds"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="50" />
+                        android:progress="30" />
                 </LinearLayout>
 
                 <!-- Progress Bar 5 for Investments -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Progress Bar 5"
+                        android:layout_weight="0.2"
+                        android:text="Real Estate"
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
-                        android:layout_width="match_parent"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="60" />
+                        android:progress="70" />
                 </LinearLayout>
 
             </LinearLayout>

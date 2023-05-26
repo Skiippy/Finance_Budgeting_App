@@ -131,12 +131,14 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/loginText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/loginUnderlined"
-            android:textColor="@color/text" />
+            android:textColor="@color/text"
+            android:clickable="true"
+            android:focusable="true"/>
 
     </LinearLayout>
 

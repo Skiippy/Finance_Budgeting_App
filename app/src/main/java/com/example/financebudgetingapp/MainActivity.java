@@ -7,9 +7,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 private  androidx.appcompat.widget.AppCompatButton btnSignup;
+private TextView loginText;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,20 @@ private  androidx.appcompat.widget.AppCompatButton btnSignup;
                 openQuestionnaire();
             }
         });
+        loginText = (TextView) findViewById(R.id.loginText);
+        loginText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                openLogin();
+            }
+        });
     }
         public void openQuestionnaire() {
         Intent intent = new Intent(this, Questionaire.class);
+        startActivity(intent);
+    }
+
+    public void openLogin() {
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
 }

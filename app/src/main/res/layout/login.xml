@@ -48,7 +48,9 @@
             android:text="@string/email"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextEmailAddress" />
+            android:labelFor="@+id/editTextTextEmailAddress"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
@@ -72,7 +74,9 @@
             android:text="@string/password"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextPassword" />
+            android:labelFor="@+id/editTextTextPassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
 
         <EditText
@@ -90,7 +94,7 @@
             android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/loginButton"
             style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
