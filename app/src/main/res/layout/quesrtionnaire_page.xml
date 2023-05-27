@@ -112,7 +112,7 @@
                     android:textColor="@color/text" />
 
                 <RadioGroup
-                    android:layout_width="253dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:orientation="horizontal">
@@ -188,7 +188,7 @@
                     android:textColor="@color/text" />
 
                 <RadioGroup
-                    android:layout_width="253dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:orientation="horizontal">
@@ -264,29 +264,38 @@
                     android:textColor="@color/text"/>
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp">
 
-                    <EditText
-                        android:id="@+id/edtNeed0"
-                        android:paddingLeft="10dp"
-                        android:layout_width="300dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/edit_text_background"
-                        android:inputType="number"
-                        android:hint="Rent"
-                        android:textColorHint="#33000000"/>
+                    <LinearLayout
+                        android:id="@+id/llNeedsList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/edtNeed0"
+                            android:paddingLeft="10dp"
+                            android:layout_width="300dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/edit_text_background"
+                            android:hint="Rent"
+                            android:textColorHint="#33000000"/>
+
+                    </LinearLayout>
 
                     <ImageButton
+                        android:id="@+id/ibAddNeed"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/add_icon"/>
+                        android:src="@drawable/add_icon" />
 
                 </LinearLayout>
 
@@ -318,7 +327,6 @@
                         android:layout_width="300dp"
                         android:layout_height="48dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edit_text_background"
                         android:inputType="number"
@@ -326,10 +334,12 @@
                         android:textColorHint="#44000000"/>
 
                     <ImageButton
+                        android:id="@+id/ibAddWant"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/add_icon"/>
+                        android:src="@drawable/add_icon"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
 

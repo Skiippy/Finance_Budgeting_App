@@ -25,19 +25,26 @@ public class SupportPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.support_page);
 
+
+        //navigation Components
         ImageView btnSupportPage = (ImageView) findViewById(R.id.btnHomePage);
         ImageView btnGoalsPage = (ImageView) findViewById(R.id.btnGoalsPage);
+        ImageButton ibProfileButton = (ImageButton) findViewById(R.id.ibProfileButton);
 
+        //navigation
         btnSupportPage.setOnClickListener(v -> startOverviewPage());
         btnGoalsPage.setOnClickListener(v -> startGoalsPage());
+        ibProfileButton.setOnClickListener(v -> startProfilePage());
 
         //defining variable for changing drawables
         @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_left_image = getResources().getDrawable(R.drawable.arrow_left);
         @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards_image = getResources().getDrawable(R.drawable.arrow_downwards);
 
+        //expandable text components
         ImageButton IbtnExpandText = (ImageButton) findViewById(R.id.btnExpandText0);
         TextView descriptionText = (TextView) findViewById(R.id.descriptionText);
 
+        //expanding text when button clicked
         IbtnExpandText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,13 +63,15 @@ public class SupportPage extends AppCompatActivity {
     }
 
     public void startOverviewPage(){
-        Intent intent = new Intent(this, OverviewPage.class);
-        startActivity(intent);
+        startActivity(new Intent(this, OverviewPage.class));
     }
 
     public void startGoalsPage(){
-        Intent intent = new Intent(this, GoalsPage.class);
-        startActivity(intent);
+        startActivity(new Intent(this, GoalsPage.class));
+    }
+
+    public void startProfilePage(){
+        startActivity(new Intent(this, ProfilePage.class));
     }
 
 }

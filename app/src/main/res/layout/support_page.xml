@@ -37,6 +37,7 @@
             android:layout_weight="1"/>
 
         <ImageButton
+            android:id="@+id/ibProfileButton"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/profile_icon"
