@@ -54,5 +54,10 @@
     <string name="sign_out"><u>Sign Out</u></string>
     <string name="learn_more"><u>Learn More</u></string>
     <string name="help"><u>Help</u></string>
+    <string name="goalbtn_Goals">Goal</string>
+    <string name="primarybnt_Goals">Primary</string>
+    <string name="secondarybnt_Goals">Secondary</string>
+    <string name="tertiarybtn_Goals">Tertiary</string>
+    <string name="add_Goals">Image</string>
 
 </resources>
