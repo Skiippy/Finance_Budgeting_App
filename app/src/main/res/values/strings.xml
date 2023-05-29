@@ -59,5 +59,6 @@
     <string name="secondarybnt_Goals">Secondary</string>
     <string name="tertiarybtn_Goals">Tertiary</string>
     <string name="add_Goals">Image</string>
+    <string name="signupText">Don\'t have an account? <u>Signup</u></string>
 
 </resources>
