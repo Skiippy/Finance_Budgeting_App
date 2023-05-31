@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Income"
+                    android:text="Income (+ R15 000)"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
 
@@ -72,7 +72,7 @@
                         android:layout_height="11dp"
                         android:layout_weight="0.8"
                         android:max="100"
-                        android:progress="60"
+                        android:progress="90"
                         android:progressTint="#4AA800"/>
                 </LinearLayout>
 
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Expenditure"
+                    android:text="Expenditure (- R8 000)"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
 
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Progress Bar 1 for Income -->
+                    <!-- Progress Bar 1 for Expenditure -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
                             android:layout_height="11dp"
                             android:layout_weight="0.8"
                             android:max="100"
-                            android:progress="30"
+                            android:progress="45"
                             android:progressTint="#B83D3D"/>
                     </LinearLayout>
 
