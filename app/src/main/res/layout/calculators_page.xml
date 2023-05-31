@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".CalculatorsPage"
+    android:background="@drawable/main_background">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Calculators"
+            android:textColor="@color/text"
+            android:textAlignment="center"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/ibProfileButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/profile_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/profile_icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFilterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/support_foreground"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/llCalculatorContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Spinner
+            android:id="@+id/spCalculatorType"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp" />
+
+        <TextView
+            android:id="@+id/tvCalculatorTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Calculator"
+            android:textAlignment="center"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCalculatorContainer"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/support_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llFilterContainer">
+
+
+        <!--50/30/20 Rule-->
+        <LinearLayout
+            android:id="@+id/ll50_30_20"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:visibility="gone">
+
+
+            <!--gross income-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gross Income"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="40dp"/>
+
+                <EditText
+                    android:id="@+id/edtGrossIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="5dp"
+                    android:hint="20 000"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCalculate503020"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/button_background"
+                android:text="Calculate"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakdown"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/text"/>
+
+            <!--needs-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Needs (50%)"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="40dp"/>
+
+                <EditText
+                    android:id="@+id/edtBreakdownNeeds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="5dp"
+                    android:inputType="number"
+                    android:clickable="false"/>
+
+            </LinearLayout>
+            <!--Wants-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Wants (30%)"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="40dp"/>
+
+                <EditText
+                    android:id="@+id/edtBreakdownWants"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="5dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+            <!--Saving/Investing-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Saving/Investing (20%)"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="40dp"
+                    android:ellipsize="middle"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edtBreakdownSavingInvesting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="5dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llEmergencyFundCalculator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monthly Income"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="40dp"/>
+
+                <EditText
+                    android:id="@+id/edtMonthlyIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="5dp"
+                    android:hint="20 000"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+
+            <!--number of months-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Number of months (6)"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="40dp"/>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sdNumMonths"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbColor="@color/accent"
+                    app:trackColor="@color/foreground"
+                    app:tickColor="@color/accent"
+                    android:valueTo="10"
+                    android:value="6"
+                    android:stepSize="1"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakdown"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/text"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Fund:"
+                    android:textColor="@color/text" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvEmergencyFund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/text"
+                    android:layout_marginRight="10dp"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

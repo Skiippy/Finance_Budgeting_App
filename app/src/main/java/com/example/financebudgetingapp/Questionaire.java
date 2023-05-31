@@ -84,7 +84,7 @@ public class Questionaire extends AppCompatActivity {
         btnSubmit.setOnClickListener(v -> startOverviewPage());
 
 
-        //adding 'want' fields
+        //adding 'need' fields
         ImageButton ibAddNeed = (ImageButton) findViewById(R.id.ibAddNeed);
         //drawable for edit component
         @SuppressLint("UseCompatLoadingForDrawables") Drawable edit_backkground = getResources().getDrawable(R.drawable.edit_text_background);
@@ -112,8 +112,9 @@ public class Questionaire extends AppCompatActivity {
             edtNeedName.setBackground(edit_backkground);
             edtNeedName.setTextColor(color);
             edtNeedName.setEllipsize(TextUtils.TruncateAt.END);
+            setMargins(edtNeedName, 0, 10, 10, 0);
 
-
+            //EditText for adding want amount
             EditText edtNeedAmount = new EditText(getApplicationContext());
             edtNeedAmount.setWidth(dpToPx(110));
             edtNeedAmount.setHeight(dpToPx(48));
@@ -142,6 +143,59 @@ public class Questionaire extends AppCompatActivity {
 
         });
 
+        //Adding 'want' field
+        ImageButton ibAddWant = (ImageButton) findViewById(R.id.ibAddWant);
+
+        ibAddWant.setOnClickListener(v -> {
+            LinearLayout llWant = new LinearLayout(getApplicationContext());
+            llWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            llWant.setPadding(0, 0, 10, 0);
+
+            //adding layout to LinearLayout
+            LinearLayout llWantsList = (LinearLayout) findViewById(R.id.llWantsList);
+            llWantsList.addView(llWant);
+
+
+            //EditText for adding want
+            EditText edtWantName = new EditText(getApplicationContext());
+            edtWantName.setWidth(dpToPx(110));
+            edtWantName.setHeight(dpToPx(48));
+            edtWantName.setPadding(dpToPx(10), 0, 0, 0);
+            edtWantName.setBackground(edit_backkground);
+            edtWantName.setTextColor(color);
+            edtWantName.setEllipsize(TextUtils.TruncateAt.END);
+            setMargins(edtWantName, 0, 10, 10, 0);
+
+            //EditText for adding want amount
+            EditText edtWantAmount = new EditText(getApplicationContext());
+            edtWantAmount.setWidth(dpToPx(110));
+            edtWantAmount.setHeight(dpToPx(48));
+            edtWantAmount.setPadding(dpToPx(10), 0, 0, 0);
+            edtWantAmount.setBackground(edit_backkground);
+            edtWantAmount.setTextColor(color);
+            edtWantAmount.setEllipsize(TextUtils.TruncateAt.END);
+
+            //ImageButton for removing the component
+            ImageButton ibRemoveNeed = new ImageButton(this);
+            ibRemoveNeed.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            ibRemoveNeed.setBackground(null);
+            ibRemoveNeed.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
+
+            //Removing components when ibRemove is clicked
+            ibRemoveNeed.setOnClickListener(view -> {
+                llWant.removeView(edtWantName);
+                llWant.removeView(edtWantAmount);
+                llWant.removeView(ibRemoveNeed);
+            });
+
+            //add component to layout
+            llWant.addView(edtWantName);
+            llWant.addView(edtWantAmount);
+            llWant.addView(ibRemoveNeed);
+
+        });
+
+
 
     }
 
@@ -153,6 +207,14 @@ public class Questionaire extends AppCompatActivity {
     private int dpToPx(int dp) {
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
+    }
+
+    private void setMargins (View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.setLayoutParams(p);
+        }
     }
 
 }

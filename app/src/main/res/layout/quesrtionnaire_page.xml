@@ -276,16 +276,36 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/edtNeed0"
-                            android:paddingLeft="10dp"
-                            android:layout_width="300dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_height="48dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/edit_text_background"
-                            android:hint="Rent"
-                            android:textColorHint="#33000000"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <EditText
+                                android:id="@+id/edtNeedName"
+                                android:paddingLeft="10dp"
+                                android:layout_width="110dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Rent"
+                                android:textColorHint="#33000000"/>
+
+                            <EditText
+                                android:id="@+id/edtNeedAmount"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:layout_width="110dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Rent Amount"
+                                android:textColorHint="#33000000"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -321,17 +341,44 @@
                     android:orientation="horizontal"
                     android:paddingStart="10dp">
 
-                    <EditText
-                        android:id="@+id/edtWant0"
-                        android:paddingStart="10dp"
-                        android:layout_width="300dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/edit_text_background"
-                        android:inputType="number"
-                        android:hint="Travel"
-                        android:textColorHint="#44000000"/>
+                    <LinearLayout
+                        android:id="@+id/llWantsList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <EditText
+                                android:id="@+id/edtWantName"
+                                android:paddingLeft="10dp"
+                                android:layout_width="110dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Travel"
+                                android:textColorHint="#33000000"/>
+
+                            <EditText
+                                android:id="@+id/edtWantAmount"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:layout_width="110dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Travel Amount"
+                                android:textColorHint="#33000000"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/ibAddWant"
