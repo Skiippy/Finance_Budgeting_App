@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -174,6 +175,7 @@ public class Questionaire extends AppCompatActivity {
             edtWantAmount.setBackground(edit_backkground);
             edtWantAmount.setTextColor(color);
             edtWantAmount.setEllipsize(TextUtils.TruncateAt.END);
+            edtWantAmount.setInputType(InputType.TYPE_CLASS_NUMBER);
 
             //ImageButton for removing the component
             ImageButton ibRemoveNeed = new ImageButton(this);

@@ -4,17 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
+
+import java.util.ArrayList;
 
 public class CalculatorsPage extends AppCompatActivity {
 
@@ -27,6 +35,7 @@ public class CalculatorsPage extends AppCompatActivity {
         //all calculators
         LinearLayout ll50_30_20 = findViewById(R.id.ll50_30_20);
         LinearLayout llEmergencyFundCalculator = findViewById(R.id.llEmergencyFundCalculator);
+        LinearLayout llCarAffordabilityCalculator = findViewById(R.id.llCarAffordabilityCalculator);
 
         //spinner code for changing calculators
         Spinner spCalculatorType = findViewById(R.id.spCalculatorType);
@@ -49,6 +58,11 @@ public class CalculatorsPage extends AppCompatActivity {
                     llEmergencyFundCalculator.setVisibility(View.VISIBLE);
                 }else{
                     llEmergencyFundCalculator.setVisibility(View.GONE);
+                }
+                if (position == 2){
+                    llCarAffordabilityCalculator.setVisibility(View.VISIBLE);
+                }else{
+                    llCarAffordabilityCalculator.setVisibility(View.GONE);
                 }
             }
 
@@ -90,5 +104,60 @@ public class CalculatorsPage extends AppCompatActivity {
         });
 
         //create on change for edt
+
+
+        //Car affordability calculator
+        ImageButton ibAddCarCost = findViewById(R.id.ibAddCarCost);
+        LinearLayout llCostContainer = findViewById(R.id.llCostsContainer);
+        llCostContainer.setOrientation(LinearLayout.VERTICAL);
+        //editText Background Drawable
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable editTextBackground = getResources().getDrawable(R.drawable.edit_text_background);
+
+        ibAddCarCost.setOnClickListener(v -> {
+            EditText edtCarCost = new EditText(this);
+            edtCarCost.setLayoutParams(new ViewGroup.LayoutParams(dpToPx(200), dpToPx(24)));
+            edtCarCost.setBackground(editTextBackground);
+            edtCarCost.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+            llCostContainer.addView(edtCarCost);
+        });
+
+        //getting edtCarCost's values
+        TextView tvMonthlyCarExpenses = findViewById(R.id.tvMonthlyCarExpenses);
+        //Array for storing edit values
+        ArrayList<Integer> edtValues = new ArrayList<>();
+        Button btnCalculateCarAffordability = findViewById(R.id.btnCalculateCarAffordability);
+        btnCalculateCarAffordability.setOnClickListener(v ->{
+            for (int i = 0; i < llCostContainer.getChildCount(); i++){
+                EditText child = (EditText) llCostContainer.getChildAt(i);
+
+                String edtValue = child.getText().toString();
+                if (!edtValue.isEmpty()) {
+                    edtValues.add(Integer.parseInt(edtValue));
+                }else{
+                    llCostContainer.removeView(child);
+
+                }
+
+            }
+
+            int sumEdtValues = 0;
+            for (Integer i: edtValues){
+                sumEdtValues = sumEdtValues + i;
+            }
+
+            tvMonthlyCarExpenses.setText(Integer.toString(sumEdtValues));
+            edtValues.clear();
+
+        });
+
+
+
     }
+
+    private int dpToPx(int dp) {
+        float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
+    }
+
 }
