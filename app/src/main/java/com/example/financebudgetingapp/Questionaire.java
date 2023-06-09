@@ -5,21 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.Color;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Questionaire extends AppCompatActivity {
     @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
@@ -27,6 +30,10 @@ public class Questionaire extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quesrtionnaire_page);
+
+        //editText average salary
+        EditText edtAverageSalary = findViewById(R.id.edtAverageSalary);
+        LinearLayout main_container = findViewById(R.id.main_container);
 
         //Emergency Fund components
         RadioButton rbEmergencyFundYes = (RadioButton) findViewById(R.id.rbEmergencyYes);
@@ -82,7 +89,31 @@ public class Questionaire extends AppCompatActivity {
         //navigation components
         Button btnSubmit = (Button) findViewById(R.id.btnQuestionnaireSubmit);
         //navigation
-        btnSubmit.setOnClickListener(v -> startOverviewPage());
+        btnSubmit.setOnClickListener(v -> {
+            DatabaseController dbHelper = new DatabaseController(getApplicationContext());
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            /*String name = "Salary";
+            double amount = Double.parseDouble(edtAverageSalary.getText().toString());
+            db.execSQL("INSERT INTO expenses (name, amount) VALUES (?, ?)",
+                    new Object[]{name, amount});*/
+
+
+            Cursor cursor = db.rawQuery("SELECT * FROM expenses", null);
+            while (cursor.moveToNext()){
+                TextView tvTest = new TextView(getApplicationContext());
+                tvTest.setText(cursor.getString(cursor.getColumnIndex("amount")));
+                main_container.addView(tvTest);
+
+            }
+
+            cursor.close();
+
+            db.close();
+
+            //startOverviewPage();
+
+        });
 
 
         //adding 'need' fields
@@ -106,14 +137,40 @@ public class Questionaire extends AppCompatActivity {
 
 
             //EditText for adding want
-            EditText edtNeedName = new EditText(getApplicationContext());
+            /*EditText edtNeedName = new EditText(getApplicationContext());
             edtNeedName.setWidth(dpToPx(110));
             edtNeedName.setHeight(dpToPx(48));
             edtNeedName.setPadding(dpToPx(10), 0, 0, 0);
             edtNeedName.setBackground(edit_backkground);
             edtNeedName.setTextColor(color);
             edtNeedName.setEllipsize(TextUtils.TruncateAt.END);
-            setMargins(edtNeedName, 0, 10, 10, 0);
+            setMargins(edtNeedName, 0, 10, 10, 0);*/
+
+            Spinner spNeedList = new Spinner(getApplicationContext());
+            spNeedList.setLayoutParams(new ViewGroup.LayoutParams(dpToPx(110), dpToPx(48)));
+            spNeedList.setPadding(dpToPx(10), 0, 0, 0);
+            spNeedList.setBackground(edit_backkground);
+
+
+            //initializing spinner component
+            String[] spinnerContent = new String[] {
+                    "Rent", "Utilities", "Food", "Transport", "Clothing", "Other"
+            };
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, spinnerContent);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spNeedList.setAdapter(adapter);
+            spNeedList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             //EditText for adding want amount
             EditText edtNeedAmount = new EditText(getApplicationContext());
@@ -132,13 +189,13 @@ public class Questionaire extends AppCompatActivity {
 
             //Removing components when ibRemove is clicked
             ibRemoveNeed.setOnClickListener(view -> {
-                llNeed.removeView(edtNeedName);
+                llNeed.removeView(spNeedList);
                 llNeed.removeView(edtNeedAmount);
                 llNeed.removeView(ibRemoveNeed);
             });
 
             //add component to layout
-            llNeed.addView(edtNeedName);
+            llNeed.addView(spNeedList);
             llNeed.addView(edtNeedAmount);
             llNeed.addView(ibRemoveNeed);
 
