@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -24,7 +26,6 @@ public class SupportPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.support_page);
 
-        //scrollView that holds all containers
         LinearLayout llBody = (LinearLayout) findViewById(R.id.llBody);
         //Container drawable
         @SuppressLint("UseCompatLoadingForDrawables") Drawable llContainerDrawable = getResources().getDrawable(R.drawable.support_foreground);
@@ -35,20 +36,18 @@ public class SupportPage extends AppCompatActivity {
         for (int i = 0; i < 3; i++){
             //container for holding all components
             LinearLayout llContainer = new LinearLayout(this);
-            //llContainer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            //llContainer.getLayoutParams().height = LinearLayout.LayoutParams.MATCH_PARENT;
-            //llContainer.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            LinearLayout.LayoutParams containerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            containerLayoutParams.setMargins(0, 0, 0, dpToPx(20));
+            llContainer.setLayoutParams(containerLayoutParams);
             llContainer.setOrientation(LinearLayout.VERTICAL);
             llContainer.setBackground(llContainerDrawable);
-            llContainer.setPadding(10, 0, 0, 0);
-            //add margin bottom
+            llContainer.setPadding(dpToPx(10), dpToPx(10), dpToPx(10), dpToPx(10));
 
             LinearLayout llContainerHeader = new LinearLayout(this);
-            llContainerHeader.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            //LinearLayout.LayoutParams llContainerHeaderParams = (LinearLayout.LayoutParams) llContainerHeader.getLayoutParams();
-            //llContainerHeaderParams.setMargins(0, 0, 0, 10);
+            LinearLayout.LayoutParams headerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            headerLayoutParams.setMargins(0, 0, 0, 20);
+            llContainerHeader.setLayoutParams(headerLayoutParams);
             llContainerHeader.setOrientation(LinearLayout.HORIZONTAL);
-            //llContainerHeader.setLayoutParams(llContainerHeaderParams);
 
             //adding ContainerHeader to Main Container
             llContainer.addView(llContainerHeader);
@@ -59,24 +58,63 @@ public class SupportPage extends AppCompatActivity {
             ivHeaderIcon.setImageDrawable(getResources().getDrawable(R.drawable.investion_icon));
 
             TextView tvHeading = new TextView(this);
-            tvHeading.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            tvHeading.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
             tvHeading.setText("Investing");
+            tvHeading.setTextColor(getResources().getColor(R.color.text));
+            tvHeading.setGravity(Gravity.CENTER);
 
-            //View vSpacer = new View(this);
-            //View.LayoutParams vSpacerParams = (LinearLayout.LayoutParams) vSpacer.getLayoutParams();
-            //vSpacerParams.weight = 1;
-            //vSpacer.setLayoutParams(vSpacerParams);
+            View vSpacer = new View(this);
+            LinearLayout.LayoutParams spacerLayoutParams = new LinearLayout.LayoutParams(0, 0, 1.0f);
+            vSpacer.setLayoutParams(spacerLayoutParams);
 
             ImageButton ibExpandText = new ImageButton(this);
             ibExpandText.setLayoutParams(new ViewGroup.LayoutParams(dpToPx(24), dpToPx(24)));
             ibExpandText.setImageDrawable(getResources().getDrawable(R.drawable.arrow_downwards));
+            int selectableItemBackgroundBorderlessId = getResources().getIdentifier(
+                    "selectableItemBackgroundBorderless", "attr", getPackageName()
+            );
+            if (selectableItemBackgroundBorderlessId != 0) {
+                TypedValue typedValue = new TypedValue();
+                getTheme().resolveAttribute(selectableItemBackgroundBorderlessId, typedValue, true);
+                ibExpandText.setBackgroundResource(typedValue.resourceId);
+            }
+
 
 
             //adding header compnents to header container
             llContainerHeader.addView(ivHeaderIcon);
             llContainerHeader.addView(tvHeading);
-            //llContainerHeader.addView(vSpacer);
+            llContainerHeader.addView(vSpacer);
+            llContainerHeader.addView(ibExpandText);
 
+
+        //Text Container
+            LinearLayout llTextContainer = new LinearLayout(this);
+            llTextContainer.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            llTextContainer.setOrientation(LinearLayout.HORIZONTAL);
+
+            TextView tvText = new TextView(this);
+            tvText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            tvText.setMaxLines(3);
+            tvText.setText(getResources().getString(R.string.InvestingInfo));
+            tvText.setTextColor(getResources().getColor(R.color.text));
+
+            //expand tvText's max lines when ibExpand is clicked
+            ibExpandText.setOnClickListener(v ->{
+                if (!expanded) {
+                    tvText.setMaxLines(Integer.MAX_VALUE);
+                    ibExpandText.setImageDrawable(getResources().getDrawable(R.drawable.arrow_left));
+                    expanded = true;
+                }else{
+                    tvText.setLines(3);
+                    ibExpandText.setImageDrawable(getResources().getDrawable(R.drawable.arrow_downwards));
+                    expanded = false;
+                }
+            });
+
+            llTextContainer.addView(tvText);
+
+            llContainer.addView(llTextContainer);
             llBody.addView(llContainer);
 
 
@@ -93,30 +131,6 @@ public class SupportPage extends AppCompatActivity {
         btnGoalsPage.setOnClickListener(v -> startGoalsPage());
         ibProfileButton.setOnClickListener(v -> startProfilePage());
         ibCalculatorsPage.setOnClickListener(v -> startCalculatorsPage());
-
-        //defining variable for changing drawables
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_left_image = getResources().getDrawable(R.drawable.arrow_left);
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards_image = getResources().getDrawable(R.drawable.arrow_downwards);
-
-        //expandable text components
-        ImageButton IbtnExpandText = (ImageButton) findViewById(R.id.btnExpandText0);
-        TextView descriptionText = (TextView) findViewById(R.id.descriptionText);
-
-        //expanding text when button clicked
-        IbtnExpandText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!expanded) {
-                    descriptionText.setMaxLines(Integer.MAX_VALUE);
-                    IbtnExpandText.setImageDrawable(arrow_left_image);
-                    expanded = true;
-                }else{
-                    descriptionText.setLines(3);
-                    IbtnExpandText.setImageDrawable(arrow_downwards_image);
-                    expanded = false;
-                }
-            }
-        });
 
     }
 

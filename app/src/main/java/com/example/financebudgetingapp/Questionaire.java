@@ -93,11 +93,14 @@ public class Questionaire extends AppCompatActivity {
             DatabaseController dbHelper = new DatabaseController(getApplicationContext());
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+
+            //insertion
             /*String name = "Salary";
             double amount = Double.parseDouble(edtAverageSalary.getText().toString());
             db.execSQL("INSERT INTO expenses (name, amount) VALUES (?, ?)",
                     new Object[]{name, amount});*/
 
+            /*
 
             Cursor cursor = db.rawQuery("SELECT * FROM expenses", null);
             while (cursor.moveToNext()){
@@ -107,11 +110,11 @@ public class Questionaire extends AppCompatActivity {
 
             }
 
-            cursor.close();
+            cursor.close();*/
 
             db.close();
 
-            //startOverviewPage();
+            startOverviewPage();
 
         });
 
