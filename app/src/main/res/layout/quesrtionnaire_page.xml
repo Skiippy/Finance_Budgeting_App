@@ -283,8 +283,8 @@
                             android:orientation="horizontal">
 
 
-                            <EditText
-                                android:id="@+id/edtNeedName"
+                            <Spinner
+                                android:id="@+id/edtInitialNeedName"
                                 android:paddingLeft="10dp"
                                 android:layout_width="110dp"
                                 android:layout_marginEnd="10dp"
@@ -295,7 +295,7 @@
                                 android:textColorHint="#33000000"/>
 
                             <EditText
-                                android:id="@+id/edtNeedAmount"
+                                android:id="@+id/edtInitialNeedAmount"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:layout_width="110dp"

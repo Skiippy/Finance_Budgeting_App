@@ -3,6 +3,7 @@ package com.example.financebudgetingapp;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseController extends SQLiteOpenHelper {
 
@@ -17,12 +18,20 @@ public class DatabaseController extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE expenses (userId INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, amount REAL)");
+        //db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, password TEXT, RetirementFund REAL, EmergencyFund REAL)");
+        db.execSQL("DROP TABLE Finances");
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+
+
+        //db.setVersion(newVersion);
+
     }
 }
+
+
