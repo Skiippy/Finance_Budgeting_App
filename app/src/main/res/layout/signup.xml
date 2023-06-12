@@ -49,12 +49,12 @@
             android:text="@string/email"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextEmailAddress"
+            android:labelFor="@+id/edtEmail"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/edtEmail"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
@@ -75,12 +75,12 @@
             android:text="@string/password"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextPassword"
+            android:labelFor="@+id/edtPassword"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/edtPassword"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
@@ -101,12 +101,12 @@
             android:text="@string/confirmPassword"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:labelFor="@+id/editTextTextConfirmPassword"
+            android:labelFor="@+id/edtConfirmPassword"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" />
 
         <EditText
-            android:id="@+id/editTextTextConfirmPassword"
+            android:id="@+id/edtConfirmPassword"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
