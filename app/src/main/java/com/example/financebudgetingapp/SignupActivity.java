@@ -48,7 +48,7 @@ public class SignupActivity extends AppCompatActivity {
 
                             if (insert == true) {
                                 Toast.makeText(SignupActivity.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), Questionaire.class);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(SignupActivity.this, "Signup Failed", Toast.LENGTH_SHORT).show();
