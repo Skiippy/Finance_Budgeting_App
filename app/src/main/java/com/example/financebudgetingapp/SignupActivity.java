@@ -5,29 +5,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.financebudgetingapp.databinding.ActivitySignupBinding;
 
 public class SignupActivity extends AppCompatActivity {
 
-    ActivitySignupBinding binding;
     DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySignupBinding.inflate(getLayoutInflater());
 
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_signup);
 
         databaseHelper = new DatabaseHelper(this);
 
-        binding.buttonSignup.setOnClickListener(new View.OnClickListener() {
+        EditText edtEmail = findViewById(R.id.edtEmail);
+        EditText edtPassword = findViewById(R.id.edtPassword);
+        EditText edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
+        TextView loginText = findViewById(R.id.loginText);
+
+        Button buttonSignup = findViewById(R.id.buttonSignup);
+
+        buttonSignup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String email = binding.edtEmail.getText().toString();
-                String password = binding.edtPassword.getText().toString();
-                String confirmPassword = binding.edtConfirmPassword.getText().toString();
+                String email = edtEmail.getText().toString();
+                String password = edtPassword.getText().toString();
+                String confirmPassword = edtConfirmPassword.getText().toString();
 
                 if (email.equals("") || password.equals("") || confirmPassword.equals(""))
                     Toast.makeText(SignupActivity.this, "Fields cannot be empty", Toast.LENGTH_SHORT).show();
@@ -55,7 +63,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        binding.loginText.setOnClickListener(new View.OnClickListener() {
+        loginText.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
