@@ -49,21 +49,16 @@ public class Questionaire extends AppCompatActivity {
         EditText edtEmergencyFund = findViewById(R.id.edtEmergencyFund);
 
         //setting Emergency fund components visibility based on radio button inputs
-        rbEmergencyFundYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (rbEmergencyFundYes.isChecked()){
-                    llEmergencyFund.setVisibility(View.VISIBLE);
-                }
+        rbEmergencyFundYes.setOnClickListener(v -> {
+            if (rbEmergencyFundYes.isChecked()) {
+                llEmergencyFund.setVisibility(View.VISIBLE);
             }
         });
 
-        rbEmergencyFundNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (rbEmergencyFundNo.isChecked()){
-                    llEmergencyFund.setVisibility(View.GONE);
-                }
+
+        rbEmergencyFundNo.setOnClickListener(v -> {
+            if (rbEmergencyFundNo.isChecked()){
+                llEmergencyFund.setVisibility(View.GONE);
             }
         });
 
@@ -76,22 +71,16 @@ public class Questionaire extends AppCompatActivity {
 
         //setting Retirement fund components visibility based on radio button inputs
 
-        rbRetirementFundYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (rbRetirementFundYes.isChecked()){
+        rbRetirementFundYes.setOnClickListener(v -> {
+                if (rbRetirementFundYes.isChecked()) {
                     llRetirementFund.setVisibility(View.VISIBLE);
-                    //updating
                 }
-            }
-        });
+            });
 
-        rbRetirementFundNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (rbRetirementFundNo.isChecked()){
-                    llRetirementFund.setVisibility(View.GONE);
-                }
+
+        rbRetirementFundNo.setOnClickListener(v -> {
+            if (rbRetirementFundNo.isChecked()){
+                llRetirementFund.setVisibility(View.GONE);
             }
         });
 
@@ -184,17 +173,11 @@ public class Questionaire extends AppCompatActivity {
 
         //want components
         ImageButton ibAddWant = findViewById(R.id.ibAddWant);
-        LinearLayout llWant = new LinearLayout(getApplicationContext());
-        LinearLayout spinnerWantContainer = new LinearLayout(this);
-        LinearLayout.LayoutParams spContainerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        Spinner spWantList = new Spinner(getApplicationContext());
-        EditText edtWantAmount = new EditText(getApplicationContext());
-        ImageButton ibRemoveWant = new ImageButton(this);
-
 
 
         ibAddWant.setOnClickListener(v -> {
 
+            LinearLayout llWant = new LinearLayout(getApplicationContext());
             llWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             llWant.setPadding(0, 0, 10, 0);
 
@@ -204,10 +187,13 @@ public class Questionaire extends AppCompatActivity {
 
 
             //EditText for adding want
+            LinearLayout spinnerWantContainer = new LinearLayout(this);
+            LinearLayout.LayoutParams spContainerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             spContainerLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
             spinnerWantContainer.setLayoutParams(spContainerLayoutParams);
 
 
+            Spinner spWantList = new Spinner(getApplicationContext());
             LinearLayout.LayoutParams spWantParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
             spWantList.setLayoutParams(spWantParams);
             spWantList.setPadding(dpToPx(10), 0, 0, 0);
@@ -236,6 +222,7 @@ public class Questionaire extends AppCompatActivity {
             });
 
             //EditText for adding want amount
+            EditText edtWantAmount = new EditText(getApplicationContext());
             LinearLayout.LayoutParams editNeedAmountLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             editNeedAmountLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
             edtWantAmount.setLayoutParams(editNeedAmountLayoutParams);
@@ -248,6 +235,7 @@ public class Questionaire extends AppCompatActivity {
             //edtWantAmount.setInputType(InputType.TYPE_CLASS_NUMBER);
 
             //ImageButton for removing the component
+            ImageButton ibRemoveWant = new ImageButton(this);
             ibRemoveWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
             ibRemoveWant.setBackground(null);
             ibRemoveWant.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
@@ -268,23 +256,18 @@ public class Questionaire extends AppCompatActivity {
 
         });
 
+        DatabaseController dbHelper = new DatabaseController(getApplicationContext());
         Button btnSubmit = findViewById(R.id.btnQuestionnaireSubmit);
         btnSubmit.setOnClickListener(v -> {
-
-            /*
-                    //need components
-                LinearLayout llNeed = new LinearLayout(getApplicationContext());
-                LinearLayout llNeedsList = findViewById(R.id.llNeedsList);
-                LinearLayout spinnerContainer = new LinearLayout(this);
-                Spinner spNeedList = new Spinner(getApplicationContext());
-                EditText edtNeedAmount = new EditText(getApplicationContext());
-                ImageButton ibRemoveNeed = new ImageButton(this);
-             */
 
             //input validation
             //EditText AverageSalary
             if (edtAverageSalary.getText().toString().isEmpty()){
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_validation_background));
+                Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
+            }else{
+                double AverageSalary = Double.parseDouble(edtAverageSalary.getText().toString());
+                dbHelper.insert("email@mail.com", "Salary", AverageSalary, "income");
             }
             edtAverageSalary.setOnClickListener(edtAverageSalaryListener -> {
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_text_background));
@@ -297,7 +280,7 @@ public class Questionaire extends AppCompatActivity {
                 edtAverageExpense.setBackground(getDrawable(R.drawable.edit_text_background));
             });
 
-
+            //Validating Retirement Fund Radio Buttons
             if (!rbRetirementFundNo.isChecked() && !rbRetirementFundYes.isChecked()){
                 rbRetirementFundYes.setButtonTintList(getColorStateList(R.color.red));
                 rbRetirementFundNo.setButtonTintList(getColorStateList(R.color.red));
@@ -305,12 +288,16 @@ public class Questionaire extends AppCompatActivity {
             rbRetirementFundNo.setOnClickListener(rbRetirementNoListener -> {
                 rbRetirementFundNo.setButtonTintList(getColorStateList(R.color.text));
                 rbRetirementFundYes.setButtonTintList(getColorStateList(R.color.text));
+                llRetirementFund.setVisibility(View.GONE);
             });
             rbRetirementFundYes.setOnClickListener(rbRetirementNoListener -> {
                 rbRetirementFundNo.setButtonTintList(getColorStateList(R.color.text));
                 rbRetirementFundYes.setButtonTintList(getColorStateList(R.color.text));
+                llRetirementFund.setVisibility(View.VISIBLE);
             });
 
+
+            //Validating Emergency Fund Radio Buttons
             if (!rbEmergencyFundNo.isChecked() && !rbEmergencyFundYes.isChecked()){
                 rbEmergencyFundNo.setButtonTintList(getColorStateList(R.color.red));
                 rbEmergencyFundYes.setButtonTintList(getColorStateList(R.color.red));
@@ -318,97 +305,42 @@ public class Questionaire extends AppCompatActivity {
             rbEmergencyFundNo.setOnClickListener(rbEmergencyNoListener -> {
                 rbEmergencyFundNo.setButtonTintList(getColorStateList(R.color.text));
                 rbEmergencyFundYes.setButtonTintList(getColorStateList(R.color.text));
+                llEmergencyFund.setVisibility(View.GONE);
             });
             rbEmergencyFundYes.setOnClickListener(rbEmergencyNoListener -> {
                 rbEmergencyFundNo.setButtonTintList(getColorStateList(R.color.text));
                 rbEmergencyFundYes.setButtonTintList(getColorStateList(R.color.text));
+                llEmergencyFund.setVisibility(View.VISIBLE);
             });
 
-            DatabaseController dbHelper = new DatabaseController(getApplicationContext());
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-
-            //TODO Fix your mess you bot
-            //component variables
-            double needAmount = 0;
-            String needName = "";
-
-            for (int a = 0; a < llNeedsList.getChildCount(); a++) {
-                LinearLayout llNeed = (LinearLayout) llNeedsList.getChildAt(a);
-                for (int i = 0; i < llNeed.getChildCount(); i++) {
-                    View child = llNeed.getChildAt(i);
-                    if (child instanceof EditText) {
-                        needAmount = Double.parseDouble(((EditText) child).getText().toString());
-                    }
-                    if (child instanceof LinearLayout) {
-                        LinearLayout spinnerContainer = (LinearLayout) child;
-                        Spinner spinnerNeed = (Spinner) spinnerContainer.getChildAt(0);
-                        needName = spinnerNeed.getSelectedItem().toString();
-                    }
-                }
-            }
-
-
-            //inserting need list component values
-            if (!isTableExists(db, "Finances")){
-                db.execSQL("CREATE TABLE Finances (financeId INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, financeName TEXT, financeAmount REAL, financeType TEXT, FOREIGN KEY (email) REFERENCES users(email))");
+            //Emergency fund EditText
+            if (!edtEmergencyFund.getText().toString().isEmpty() && rbEmergencyFundYes.isChecked()) {
+                double EmergencyFund = Double.parseDouble(edtEmergencyFund.getText().toString());
+                dbHelper.insert("email@mail.com", "Emergency Fund", EmergencyFund, "Emergency Fund");
             }else{
-                String expenseType = "expense";
-                db.execSQL("INSERT INTO Finances (email, financeName,  financeAmount, financeType) VALUES(?, ?, ?, ?)",
-                        new Object[]{"email", needName, needAmount, expenseType});
+                edtEmergencyFund.setBackground(getDrawable(R.drawable.edit_validation_background));
+                Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
             }
 
-            Cursor cursor = db.rawQuery("SELECT * FROM Finances", null);
-            while (cursor.moveToNext()){
-                TextView test = new TextView(this);
-                test.setText(cursor.getString(cursor.getColumnIndex("financeName")));
-                main_container.addView(test);
-            }
-            cursor.close();
-
-            /*
-                Cursor cursor = db.rawQuery("SELECT * FROM users", null);
-                while (cursor.moveToNext()){
-                    TextView test = new TextView(this);
-                    test.setText(cursor.getString(cursor.getColumnIndex("RetirementFund")));
-                    main_container.addView(test);
-                }
-                cursor.close();
-            }*/
-
-            /*if (!isTableExists(db, "users")){
-                db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, password TEXT, RetirementFund REAL, EmergencyFund REAL)");
-            }else {
-                if (rbRetirementFundYes.isChecked() && (!edtRetirementFund.getText().toString().isEmpty())) {
-                    String userEmail = "jondoe@mai.com";
-                    double RetirementFund = Double.parseDouble(edtRetirementFund.getText().toString());
-                    db.execSQL("UPDATE users SET RetirementFund = ? WHERE email = ?",
-                            new Object[]{RetirementFund, userEmail});
-                    db.close();
-                }
-                if (rbEmergencyFundYes.isChecked() && (!edtRetirementFund.getText().toString().isEmpty())) {
-                    String userEmail = "jondoe@mai.com";
-                    double EmergencyFund = Double.parseDouble(edtEmergencyFund.getText().toString());
-                    db.execSQL("UPDATE users SET EmergencyFund = ? WHERE email = ?",
-                            new Object[]{EmergencyFund, userEmail});
-                    db.close();
-                }
-            }*/
-
-           /* String email = "JohnDoe@mail.com";
-
-            if (!isTableExists(db, "Finances")){
-                db.execSQL("CREATE TABLE Finances (financeId INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, financeName TEXT, financeAmount REAL, financeType TEXT, FOREIGN KEY (email) REFERENCES users(email))");
+            //Retirement fund EditText
+            if (!edtRetirementFund.getText().toString().isEmpty() && rbRetirementFundYes.isChecked()) {
+                double RetirementFund = Double.parseDouble(edtRetirementFund.getText().toString());
+                dbHelper.insert("email@mail.com", "Retirement Fund", RetirementFund, "Retirement Fund");
             }else{
-                if (!edtAverageSalary.getText().toString().isEmpty()) {
-                    double averageMonthlyExpenses = Double.parseDouble(edtAverageSalary.getText().toString());
-                    String expenseType = "income";
-                    String averageMonthlyExpenseName = "Monthly Salary";
-                    db.execSQL("INSERT INTO Finances (email, financeName,  financeAmount, financeType) VALUES(?, ?, ?, ?)",
-                            new Object[]{email, averageMonthlyExpenseName, averageMonthlyExpenses, expenseType});
-                }
-                db.close();
-            }*/
+                edtEmergencyFund.setBackground(getDrawable(R.drawable.edit_validation_background));
+                Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
+            }
+
+
+            //TODO: get and insert needs components
+
+
+
+
+
+
+
+
 
             //startOverviewPage();
 

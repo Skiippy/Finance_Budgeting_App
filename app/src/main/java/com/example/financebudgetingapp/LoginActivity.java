@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.financebudgetingapp.databinding.ActivityLoginBinding;
+//import com.example.financebudgetingapp.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
