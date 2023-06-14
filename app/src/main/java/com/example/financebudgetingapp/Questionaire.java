@@ -86,6 +86,18 @@ public class Questionaire extends AppCompatActivity {
 
 
 
+        //spinner
+        Spinner edtInitialNeedName = findViewById(R.id.edtInitialNeedName);
+        String[] spinnerTest = new String[]{
+                "Rent", "Utilities", "Food", "Transport", "Clothing", "Debt", "Other"
+        };
+        ArrayAdapter<String> adapterTest = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, spinnerTest);
+        adapterTest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        edtInitialNeedName.setAdapter(adapterTest);
+
+
+
         //adding 'need' fields
         ImageButton ibAddNeed = findViewById(R.id.ibAddNeed);
         //drawable for edit component
@@ -94,8 +106,6 @@ public class Questionaire extends AppCompatActivity {
 
         //need components
         LinearLayout llNeedsList = findViewById(R.id.llNeedsList);
-
-
         ibAddNeed.setOnClickListener(v -> {
 
             if (maxList <= 4) {
@@ -172,6 +182,7 @@ public class Questionaire extends AppCompatActivity {
 
 
         //want components
+        LinearLayout llWantsList = findViewById(R.id.llWantsList);
         ImageButton ibAddWant = findViewById(R.id.ibAddWant);
 
 
@@ -182,7 +193,6 @@ public class Questionaire extends AppCompatActivity {
             llWant.setPadding(0, 0, 10, 0);
 
             //adding layout to LinearLayout
-            LinearLayout llWantsList = findViewById(R.id.llWantsList);
             llWantsList.addView(llWant);
 
 
@@ -209,17 +219,6 @@ public class Questionaire extends AppCompatActivity {
                     android.R.layout.simple_spinner_item, spinnerContent);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spWantList.setAdapter(adapter);
-            spWantList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
 
             //EditText for adding want amount
             EditText edtWantAmount = new EditText(getApplicationContext());
@@ -262,7 +261,7 @@ public class Questionaire extends AppCompatActivity {
 
             //input validation
             //EditText AverageSalary
-            if (edtAverageSalary.getText().toString().isEmpty()){
+            /*if (edtAverageSalary.getText().toString().isEmpty()){
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_validation_background));
                 Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
             }else{
@@ -329,17 +328,40 @@ public class Questionaire extends AppCompatActivity {
             }else{
                 edtEmergencyFund.setBackground(getDrawable(R.drawable.edit_validation_background));
                 Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
-            }
+            }*/
+
+            //Toast.makeText(this, "Test", Toast.LENGTH_LONG).show();
 
 
             //TODO: get and insert needs components
+            String edtNeedItem = null;
+            String spNeedItem = null;
+            for (int i = 0; i < llNeedsList.getChildCount(); i++){
+                LinearLayout child = (LinearLayout) llNeedsList.getChildAt(i);
+                for (int a = 0; a < child.getChildCount(); a++){
+                    if (child.getChildAt(a) instanceof EditText){
+                        EditText subChild = (EditText) child.getChildAt(a);
+                        edtNeedItem = subChild.getText().toString();
+                    }
+                    if (child.getChildAt(a) instanceof Spinner){
+                        Spinner subChild = (Spinner) child.getChildAt(a);
+                        spNeedItem = subChild.getSelectedItem().toString();
+                    }
+                    if (child.getChildAt(a) instanceof LinearLayout){
+                        Spinner subChild = (Spinner) ((LinearLayout) child.getChildAt(a)).getChildAt(0);
+                        spNeedItem = subChild.getSelectedItem().toString();
+                    }
+
+                    Toast.makeText(this, edtNeedItem, Toast.LENGTH_SHORT).show();
+
+                    //dbHelper.insert("email@mail.com", spNeedItem, Double.parseDouble(edtNeedItem), "Expense");
+
+                }
+            }
 
 
-
-
-
-
-
+            //Cursor cursor = dbHelper.getAll();
+            //Toast.makeText(this, cursor.getString(cursor.getColumnIndex("financeName")), Toast.LENGTH_SHORT).show();
 
 
             //startOverviewPage();

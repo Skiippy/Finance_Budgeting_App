@@ -354,8 +354,8 @@
                             android:orientation="horizontal">
 
 
-                            <EditText
-                                android:id="@+id/edtWantName"
+                            <Spinner
+                                android:id="@+id/spWantName"
                                 android:paddingLeft="10dp"
                                 android:layout_width="110dp"
                                 android:layout_marginEnd="10dp"
