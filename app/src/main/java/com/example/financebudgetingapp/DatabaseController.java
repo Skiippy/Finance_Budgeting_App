@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class DatabaseController extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "my_database.db";
@@ -61,6 +63,16 @@ public class DatabaseController extends SQLiteOpenHelper {
     public void insert(String email, String financeName, double financeAmount, String type){
         this.db.execSQL("INSERT INTO Finances (email, financeName,  financeAmount, financeType) VALUES(?, ?, ?, ?)",
                 new Object[]{email, financeName, financeAmount, type});
+    }
+
+    public void addGoal(GoalModel goalModel) {
+    }
+
+    public ArrayList<GoalModel> getAllGoals() {
+        return null;
+    }
+
+    public void updateGoal(GoalModel updatedGoal) {
     }
 }
 

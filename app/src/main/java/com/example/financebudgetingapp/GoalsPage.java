@@ -1,11 +1,16 @@
 package com.example.financebudgetingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class GoalsPage extends AppCompatActivity {
 
@@ -17,11 +22,32 @@ public class GoalsPage extends AppCompatActivity {
         ImageButton ibProfileButton = findViewById(R.id.ibProfileButton);
         ImageView btnSupportPage = findViewById(R.id.btnSupportPage);
         ImageView btnHomePage = findViewById(R.id.btnHomePage);
+        ImageView addbtn_goals = findViewById(R.id.addbtn_goals);
 
         ibProfileButton.setOnClickListener(v -> startProfilePage());
         btnSupportPage.setOnClickListener(v -> startSupportPage());
         btnHomePage.setOnClickListener(v -> startOverviewPage());
+        addbtn_goals.setOnClickListener(v -> startGoalPage());
 
+        RecyclerView recyclerView=findViewById(R.id.recyclerView);
+        DatabaseController databaseController=new DatabaseController(this);
+        ArrayList<GoalModel> goalModelArrayList=databaseController.getAllGoals();
+        if (goalModelArrayList.size()>0){
+            PrimaryAdapter primaryAdapter=new PrimaryAdapter(this,goalModelArrayList,databaseController);
+            recyclerView.setAdapter(primaryAdapter);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+            recyclerView.setLayoutManager(layoutManager);
+        }else {
+
+            Toast.makeText(this, "You not have any goals!", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    private void startGoalPage() {
+        startActivity(new Intent(GoalsPage.this,GoalSettingsActivity.class));
     }
 
     public void startSupportPage(){
@@ -33,7 +59,7 @@ public class GoalsPage extends AppCompatActivity {
 
     }
     public void startOverviewPage(){
-            startActivity(new Intent(this, OverviewPage.class));
+        startActivity(new Intent(this, OverviewPage.class));
     }
 
 }

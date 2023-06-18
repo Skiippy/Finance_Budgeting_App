@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/t"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_background">
 
     <!--header-->
@@ -92,29 +93,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="105dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ProgressBar
-                        android:id="@+id/progressBarPrimaryLeft"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <ProgressBar
-                        android:id="@+id/progressBarPrimaryCenter"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <ProgressBar
-                        android:id="@+id/progressBarPrimaryRight"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
                 </LinearLayout>
@@ -155,7 +141,6 @@
 
                     <ProgressBar
                         android:id="@+id/progressBarSecondaryLeft"
-                        style="?android:attr/progressBarStyle"
                         android:layout_width="0dp"
                         android:layout_height="92dp"
                         android:layout_weight="1"
@@ -163,7 +148,6 @@
 
                     <ProgressBar
                         android:id="@+id/progressBarSecondaryCenter"
-                        style="?android:attr/progressBarStyle"
                         android:layout_width="0dp"
                         android:layout_height="94dp"
                         android:layout_weight="1"
@@ -171,7 +155,6 @@
 
                     <ProgressBar
                         android:id="@+id/progressBarSecondaryRight"
-                        style="?android:attr/progressBarStyle"
                         android:layout_width="0dp"
                         android:layout_height="94dp"
                         android:layout_weight="1"
@@ -215,21 +198,18 @@
 
                     <ProgressBar
                         android:id="@+id/progressBarTertiaryLeft"
-                        style="?android:attr/progressBarStyle"
                         android:layout_width="0dp"
                         android:layout_height="93dp"
                         android:layout_weight="1" />
 
                     <ProgressBar
                         android:id="@+id/progressBarTertiaryCenter"
-                        style="?android:attr/progressBarStyle"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <ProgressBar
                         android:id="@+id/progressBarTertiaryRight"
-                        style="?android:attr/progressBarStyle"
                         android:layout_width="0dp"
                         android:layout_height="95dp"
                         android:layout_weight="1" />
@@ -262,13 +242,13 @@
             android:id="@+id/btnHomePage"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/home_icon"
-            android:contentDescription="@string/home_icon"/>
+            android:contentDescription="@string/home_icon"
+            android:src="@drawable/home_icon" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="24dp"
@@ -279,7 +259,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/btnGoalsPage"
@@ -291,7 +271,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/btnSupportPage"
