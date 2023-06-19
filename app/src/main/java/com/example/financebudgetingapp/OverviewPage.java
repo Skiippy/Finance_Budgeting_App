@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class OverviewPage extends AppCompatActivity {
 
@@ -16,11 +18,20 @@ public class OverviewPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.overview);
 
-        ImageView btnSupportPage = (ImageView) findViewById(R.id.btnSupportPage);
-        ImageView btnGoalsPage = (ImageView) findViewById(R.id.btnGoalsPage);
+        String userEmail = getIntent().getStringExtra("userEmail");
+
+        ImageView btnSupportPage = findViewById(R.id.btnSupportPage);
+        ImageView btnGoalsPage = findViewById(R.id.btnGoalsPage);
+        ImageView btnCalculatorPage = findViewById(R.id.btnCalculatorPage);
 
         btnSupportPage.setOnClickListener(v -> startSupportPage());
         btnGoalsPage.setOnClickListener(v -> startGoalsPage());
+        btnCalculatorPage.setOnClickListener(v ->{
+            Intent intent = new Intent(this, CalculatorsPage.class);
+            intent.putExtra("userEmail", userEmail);
+            startActivity(intent);
+        });
+
 
     }
 
@@ -32,5 +43,6 @@ public class OverviewPage extends AppCompatActivity {
         Intent intent = new Intent(this, GoalsPage.class);
         startActivity(intent);
     }
+
 
 }

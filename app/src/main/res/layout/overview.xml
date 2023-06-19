@@ -548,6 +548,7 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/btnCalculatorPage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/money_icon"

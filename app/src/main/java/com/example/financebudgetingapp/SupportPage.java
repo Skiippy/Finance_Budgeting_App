@@ -17,9 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SupportPage extends AppCompatActivity {
 
     boolean expanded = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,12 @@ public class SupportPage extends AppCompatActivity {
         //Container drawable
         @SuppressLint("UseCompatLoadingForDrawables") Drawable llContainerDrawable = getResources().getDrawable(R.drawable.support_foreground);
 
+        String[] values = getResources().getStringArray(R.array.my_array);
+
 
 
         //selected number of times
-        for (int i = 0; i < 3; i++){
+        for (String value: values){
             //container for holding all components
             LinearLayout llContainer = new LinearLayout(this);
             LinearLayout.LayoutParams containerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -96,7 +103,7 @@ public class SupportPage extends AppCompatActivity {
             TextView tvText = new TextView(this);
             tvText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             tvText.setMaxLines(3);
-            tvText.setText(getResources().getString(R.string.InvestingInfo));
+            tvText.setText(value);
             tvText.setTextColor(getResources().getColor(R.color.text));
 
             //expand tvText's max lines when ibExpand is clicked
@@ -129,7 +136,7 @@ public class SupportPage extends AppCompatActivity {
         //navigation
         btnSupportPage.setOnClickListener(v -> startOverviewPage());
         btnGoalsPage.setOnClickListener(v -> startGoalsPage());
-        ibProfileButton.setOnClickListener(v -> startProfilePage());
+        ibProfileButton.setOnClickListener(v -> startSupport());
         ibCalculatorsPage.setOnClickListener(v -> startCalculatorsPage());
 
     }
@@ -142,8 +149,8 @@ public class SupportPage extends AppCompatActivity {
         startActivity(new Intent(this, GoalsPage.class));
     }
 
-    public void startProfilePage(){
-        startActivity(new Intent(this, ProfilePage.class));
+    public void startSupport(){
+        startActivity(new Intent(this, SupportPage.class));
     }
 
     public void startCalculatorsPage(){
@@ -155,5 +162,24 @@ public class SupportPage extends AppCompatActivity {
         return (int) (dp * scale + 0.5f);
     }
 
+    private List<String> test(){
+        Field[] fields = R.string.class.getFields();
+        List<String> stringList = new ArrayList<>();
+
+        for (Field field : fields) {
+            if (field.getType() == int.class) {
+                try {
+                    int resourceId = field.getInt(null);
+                    String value = getResources().getString(resourceId);
+                    stringList.add(value);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return stringList;
+
+    }
 
 }

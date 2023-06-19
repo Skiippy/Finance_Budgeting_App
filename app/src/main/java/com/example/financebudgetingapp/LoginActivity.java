@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (checkCredentials == true) {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), OverviewPage.class);
+                        intent.putExtra("userEmail", email);
                         startActivity(intent);
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

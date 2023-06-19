@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="3"
-                    android:text="@string/InvestingInfo"
+                    android:text="nothing Yet"
                     android:textColor="@color/text"/>
 
             </LinearLayout>
@@ -181,7 +181,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="3"
-                        android:text="@string/SavingInfo"
+                        android:text="Nothing yet"
                         android:textColor="@color/text"/>
 
                 </LinearLayout>

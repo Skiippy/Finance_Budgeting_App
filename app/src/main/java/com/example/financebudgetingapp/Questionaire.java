@@ -30,12 +30,16 @@ import android.widget.Toast;
 
 public class Questionaire extends AppCompatActivity {
 
+
+
     private int maxList = 0;
     @SuppressLint({"ResourceType", "UseCompatLoadingForDrawables"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quesrtionnaire_page);
+
+        String userEmail = getIntent().getStringExtra("userEmail");
 
         //editText average salary
         EditText edtAverageSalary = findViewById(R.id.edtAverageSalary);
@@ -258,15 +262,16 @@ public class Questionaire extends AppCompatActivity {
         DatabaseController dbHelper = new DatabaseController(getApplicationContext());
         Button btnSubmit = findViewById(R.id.btnQuestionnaireSubmit);
         btnSubmit.setOnClickListener(v -> {
+            boolean validCredentials = false;
 
             //input validation
             //EditText AverageSalary
-            /*if (edtAverageSalary.getText().toString().isEmpty()){
+            if (edtAverageSalary.getText().toString().isEmpty()){
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_validation_background));
-                Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
             }else{
+                validCredentials = true;
                 double AverageSalary = Double.parseDouble(edtAverageSalary.getText().toString());
-                dbHelper.insert("email@mail.com", "Salary", AverageSalary, "income");
+                dbHelper.insert(userEmail, "Salary", AverageSalary, "income");
             }
             edtAverageSalary.setOnClickListener(edtAverageSalaryListener -> {
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_text_background));
@@ -313,28 +318,23 @@ public class Questionaire extends AppCompatActivity {
             });
 
             //Emergency fund EditText
-            if (!edtEmergencyFund.getText().toString().isEmpty() && rbEmergencyFundYes.isChecked()) {
+            if (!edtEmergencyFund.getText().toString().equals("")) {
                 double EmergencyFund = Double.parseDouble(edtEmergencyFund.getText().toString());
-                dbHelper.insert("email@mail.com", "Emergency Fund", EmergencyFund, "Emergency Fund");
+                dbHelper.insert(userEmail, "Emergency Fund", EmergencyFund, "Emergency Fund");
             }else{
                 edtEmergencyFund.setBackground(getDrawable(R.drawable.edit_validation_background));
-                Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
             }
 
             //Retirement fund EditText
             if (!edtRetirementFund.getText().toString().isEmpty() && rbRetirementFundYes.isChecked()) {
                 double RetirementFund = Double.parseDouble(edtRetirementFund.getText().toString());
-                dbHelper.insert("email@mail.com", "Retirement Fund", RetirementFund, "Retirement Fund");
+                dbHelper.insert(userEmail, "Retirement Fund", RetirementFund, "Retirement Fund");
             }else{
                 edtEmergencyFund.setBackground(getDrawable(R.drawable.edit_validation_background));
-                Toast.makeText(this, "Required Field Missing", Toast.LENGTH_LONG).show();
-            }*/
+            }
 
-            //Toast.makeText(this, "Test", Toast.LENGTH_LONG).show();
-
-
-            //TODO: get and insert needs components
             String edtNeedItem = null;
+
             String spNeedItem = null;
             for (int i = 0; i < llNeedsList.getChildCount(); i++){
                 LinearLayout child = (LinearLayout) llNeedsList.getChildAt(i);
@@ -351,48 +351,32 @@ public class Questionaire extends AppCompatActivity {
                         Spinner subChild = (Spinner) ((LinearLayout) child.getChildAt(a)).getChildAt(0);
                         spNeedItem = subChild.getSelectedItem().toString();
                     }
-
-                    Toast.makeText(this, edtNeedItem, Toast.LENGTH_SHORT).show();
-
-                    //dbHelper.insert("email@mail.com", spNeedItem, Double.parseDouble(edtNeedItem), "Expense");
-
                 }
+                dbHelper.insert(userEmail, spNeedItem, Double.parseDouble(edtNeedItem), "Expense");
+                //Toast.makeText(this, spNeedItem + " " + edtNeedItem, Toast.LENGTH_SHORT).show();
             }
 
 
-            //Cursor cursor = dbHelper.getAll();
-            //Toast.makeText(this, cursor.getString(cursor.getColumnIndex("financeName")), Toast.LENGTH_SHORT).show();
-
-
-            //startOverviewPage();
+            if (validCredentials) {
+                Intent intent = new Intent(this, OverviewPage.class);
+                intent.putExtra("userEmail", userEmail);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "Required Field is Empty", Toast.LENGTH_SHORT).show();
+            }
 
         });
 
     }
 
-    public void startOverviewPage(){
-        Intent intent = new Intent(this, OverviewPage.class);
-        startActivity(intent);
-    }
 
     private int dpToPx(int dp) {
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
     }
 
-    private void setMargins (View view, int left, int top, int right, int bottom) {
-        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            p.setMargins(left, top, right, bottom);
-            view.setLayoutParams(p);
-        }
-    }
-
-    public boolean isTableExists(SQLiteDatabase db, String tableName) {
-        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name=?", new String[] { tableName });
-        boolean tableExists = cursor.moveToFirst();
-        cursor.close();
-        return tableExists;
+    private LinearLayout createWantComponents(){
+        return null;
     }
 
 

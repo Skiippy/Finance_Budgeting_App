@@ -24,9 +24,7 @@ public class DatabaseController extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        //db.execSQL("CREATE TABLE users(email TEXT PRIMARY KEY, password TEXT, RetirementFund REAL, EmergencyFund REAL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS Finances (financeId INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, financeName TEXT, financeAmount REAL, financeType TEXT, FOREIGN KEY (email) REFERENCES users(email))");
-        //db.execSQL("DROP TABLE Finances");
 
 
     }
@@ -35,9 +33,6 @@ public class DatabaseController extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 
-
-        //db.setVersion(newVersion);
-
     }
 
 
@@ -45,12 +40,37 @@ public class DatabaseController extends SQLiteOpenHelper {
         return this.db.rawQuery("SELECT * FROM Finances", null);
     }
 
-    public Cursor getColumnValue(String columnName, String condition){
-        String[] columns = {columnName};
-        String whereClause = columnName + " = ?";
-        String[] whereArgs = {condition};
+    public Cursor getFinancesByEmail(String email) {
+        String query = "SELECT * FROM Finances WHERE email = ?";
+        String[] selectionArgs = { email };
 
-        return db.query("Finances", columns, whereClause, whereArgs, null, null, null);
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        return cursor;
+    }
+
+    public Cursor getSalaryByEmail(String financeType, String email) {
+        String query = "SELECT financeAmount FROM Finances WHERE financeType = ? AND email = ?";
+        String[] selectionArgs = { financeType, email };
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        return cursor;
+    }
+
+
+    public Cursor getEmergencyFundByEmail(String email) {
+        String query = "SELECT * FROM Finances WHERE financeType = 'Emergency Fund' AND email = ?";
+        String[] selectionArgs = { email };
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        return cursor;
+    }
+
+
+    public Cursor getRetirementFund(String email){
+        return this.db.rawQuery("SELECT financeAmount FROM Finances WHERE financeType = 'Retirement Fund' AND email = ?", new String[]{email});
     }
 
     public void updateRecord(String columnName, String columnValue, String condition){
@@ -63,6 +83,10 @@ public class DatabaseController extends SQLiteOpenHelper {
     public void insert(String email, String financeName, double financeAmount, String type){
         this.db.execSQL("INSERT INTO Finances (email, financeName,  financeAmount, financeType) VALUES(?, ?, ?, ?)",
                 new Object[]{email, financeName, financeAmount, type});
+    }
+
+    public void deleteAll(){
+        this.db.execSQL("DELETE FROM Finances");
     }
 
     public void addGoal(GoalModel goalModel) {
