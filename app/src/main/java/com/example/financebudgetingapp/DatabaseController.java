@@ -84,7 +84,16 @@ public class DatabaseController extends SQLiteOpenHelper {
         this.db.execSQL("INSERT INTO Finances (email, financeName,  financeAmount, financeType) VALUES(?, ?, ?, ?)",
                 new Object[]{email, financeName, financeAmount, type});
     }
-
+    // Overview
+    public Cursor getExpensesByEmail(String email){
+        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'Expense' AND email = ?", new String[]{email});
+    }
+    public Cursor getInvestmentsByEmail(String email){
+        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'Investments' AND email = ?", new String[]{email});
+    }
+    public Cursor getIncomeByEmail(String email){
+        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'income' AND email = ?", new String[]{email});
+    }
     public void deleteAll(){
         this.db.execSQL("DELETE FROM Finances");
     }

@@ -55,6 +55,7 @@
 
                 <!-- Income Text -->
                 <TextView
+                    android:id="@+id/TotalIncome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Income (+ R15 000)"
@@ -67,6 +68,7 @@
                     android:orientation="vertical">
 
                     <ProgressBar
+                        android:id="@+id/income_progress"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -80,6 +82,7 @@
 
                 <!-- Income and Expenditure Progress Bars -->
                 <TextView
+                    android:id="@+id/tvTotalExpense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Expenditure (- R8 000)"
@@ -99,6 +102,7 @@
                         android:orientation="vertical">
 
                         <ProgressBar
+                            android:id="@+id/expense_progress"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_width="300dp"
                             android:layout_height="11dp"
@@ -119,6 +123,7 @@
 
             <!-- Needs with Labels and Progress Bars -->
             <LinearLayout
+                android:id="@+id/linearNeeds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -146,6 +151,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/needs_progress1"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -169,6 +175,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/needs_progress2"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -192,6 +199,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/needs_progress3"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -215,13 +223,14 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/needs_progress4"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
                         android:layout_weight="0.8"
                         android:max="100"
                         android:progress="90"
-                        android:progressTint="#4AA800"/>
+                        android:progressTint="#4AA800" />
                 </LinearLayout>
 
                 <!-- Progress Bar 5 for Needs -->
@@ -238,6 +247,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/needs_progress5"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -283,6 +293,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/wants_progress1"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -306,6 +317,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/wants_progress2"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -329,6 +341,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/wants_progress3"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -352,6 +365,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/wants_progress4"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -375,6 +389,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/wants_progress5"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -393,6 +408,7 @@
 
             <!-- Investments with Labels and Progress Bars -->
             <LinearLayout
+                android:id="@+id/LinearInvest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -408,6 +424,7 @@
 
                 <!-- Progress Bar 1 for Investments -->
                 <LinearLayout
+                    android:id="@+id/progress_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -420,6 +437,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/investments_progress1"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -427,6 +445,7 @@
                         android:max="100"
                         android:progress="30"
                         android:progressTint="#3D6EB8"/>
+
                 </LinearLayout>
 
                 <!-- Progress Bar 2 for Investments -->
@@ -443,6 +462,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/investments_progress2"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -466,6 +486,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/investments_progress3"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -489,6 +510,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/investments_progress4"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
@@ -512,6 +534,7 @@
                         android:textColor="@android:color/white" />
 
                     <ProgressBar
+                        android:id="@+id/investments_progress5"
                         style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="300dp"
                         android:layout_height="11dp"
