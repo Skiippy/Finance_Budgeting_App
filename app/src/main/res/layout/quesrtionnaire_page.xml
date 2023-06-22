@@ -394,6 +394,81 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llInvestments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="List some of Your Investments"
+                    android:textColor="@color/text"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/llInvestmentList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <EditText
+                                android:id="@+id/edtInvestmentName"
+                                android:paddingLeft="10dp"
+                                android:layout_width="110dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Fixed Deposit"
+                                android:ellipsize="end"
+                                android:textColorHint="#33000000"/>
+
+                            <EditText
+                                android:id="@+id/edtInvestmentAmount"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:layout_width="110dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Investment Amount"
+                                android:textColorHint="#33000000"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/ibAddInvestment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/add_icon"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
 
 
             <LinearLayout

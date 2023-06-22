@@ -58,7 +58,6 @@ public class DatabaseController extends SQLiteOpenHelper {
         return cursor;
     }
 
-
     public Cursor getEmergencyFundByEmail(String email) {
         String query = "SELECT * FROM Finances WHERE financeType = 'Emergency Fund' AND email = ?";
         String[] selectionArgs = { email };
@@ -85,11 +84,16 @@ public class DatabaseController extends SQLiteOpenHelper {
                 new Object[]{email, financeName, financeAmount, type});
     }
     // Overview
-    public Cursor getExpensesByEmail(String email){
-        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'Expense' AND email = ?", new String[]{email});
+    public Cursor getNeedsByEmail(String email){
+        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'need' AND email = ?", new String[]{email});
     }
+
+    public Cursor getWantByEmail(String email){
+        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'want' AND email = ?", new String[]{email});
+    }
+
     public Cursor getInvestmentsByEmail(String email){
-        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'Investments' AND email = ?", new String[]{email});
+        return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'investment' AND email = ?", new String[]{email});
     }
     public Cursor getIncomeByEmail(String email){
         return this.db.rawQuery("SELECT financeAmount, financeName FROM Finances WHERE financeType = 'income' AND email = ?", new String[]{email});

@@ -90,97 +90,35 @@ public class Questionaire extends AppCompatActivity {
 
 
 
-        //spinner
+        //initializing initial spinner components
         Spinner edtInitialNeedName = findViewById(R.id.edtInitialNeedName);
-        String[] spinnerTest = new String[]{
+        String[] spNeedsListItems = new String[]{
                 "Rent", "Utilities", "Food", "Transport", "Clothing", "Debt", "Other"
         };
         ArrayAdapter<String> adapterTest = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, spinnerTest);
+                android.R.layout.simple_spinner_item, spNeedsListItems);
         adapterTest.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         edtInitialNeedName.setAdapter(adapterTest);
+
+
+        Spinner spWantName = findViewById(R.id.spWantName);
+        String[] spWantsListItems = new String[]{
+                "Entertainment", "Eating Out", "Travel", "Hobbies", "Clothing", "Other"
+        };
+        ArrayAdapter<String> adapterWants = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, spWantsListItems);
+        adapterWants.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spWantName.setAdapter(adapterWants);
+
 
 
 
         //adding 'need' fields
         ImageButton ibAddNeed = findViewById(R.id.ibAddNeed);
-        //drawable for edit component
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable edit_backkground = getResources().getDrawable(R.drawable.edit_text_background);
-        int color = getApplicationContext().getColor(R.color.text);
-
-        //need components
         LinearLayout llNeedsList = findViewById(R.id.llNeedsList);
         ibAddNeed.setOnClickListener(v -> {
 
-            if (maxList <= 4) {
-
-                maxList++;
-
-                LinearLayout llNeed = new LinearLayout(getApplicationContext());
-                llNeed.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                llNeed.setPadding(0, 0, 10, 0);
-
-                //adding layout to LinearLayout
-                llNeedsList.addView(llNeed);
-
-                //spinner for adding need
-                LinearLayout spinnerContainer = new LinearLayout(this);
-                LinearLayout.LayoutParams needContainerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                needContainerLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
-                spinnerContainer.setLayoutParams(needContainerLayoutParams);
-
-
-                Spinner spNeedList = new Spinner(getApplicationContext());
-                LinearLayout.LayoutParams spNeedParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
-                spNeedList.setLayoutParams(spNeedParams);
-                spNeedList.setPadding(dpToPx(10), 0, 0, 0);
-                spNeedList.setBackground(edit_backkground);
-
-                spinnerContainer.addView(spNeedList);
-
-                //initializing spinner component
-                String[] spinnerContent = new String[]{
-                        "Rent", "Utilities", "Food", "Transport", "Clothing", "Debt", "Other"
-                };
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                        android.R.layout.simple_spinner_item, spinnerContent);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spNeedList.setAdapter(adapter);
-
-
-                //EditText for adding want amount
-                EditText edtNeedAmount = new EditText(getApplicationContext());
-                LinearLayout.LayoutParams editNeedAmountLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                editNeedAmountLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
-                edtNeedAmount.setLayoutParams(editNeedAmountLayoutParams);
-                edtNeedAmount.setWidth(dpToPx(110));
-                edtNeedAmount.setHeight(dpToPx(48));
-                edtNeedAmount.setPadding(dpToPx(10), 0, 0, 0);
-                edtNeedAmount.setBackground(edit_backkground);
-                edtNeedAmount.setTextColor(color);
-                edtNeedAmount.setEllipsize(TextUtils.TruncateAt.END);
-
-                //ImageButton for removing the component
-                ImageButton ibRemoveNeed = new ImageButton(this);
-                ibRemoveNeed.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                ibRemoveNeed.setBackground(null);
-                ibRemoveNeed.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
-                ibRemoveNeed.setForegroundGravity(Gravity.CENTER);
-
-                //Removing components when ibRemove is clicked
-                ibRemoveNeed.setOnClickListener(view -> {
-                    llNeed.removeView(spinnerContainer);
-                    llNeed.removeView(edtNeedAmount);
-                    llNeed.removeView(ibRemoveNeed);
-                    maxList--;
-                });
-
-                //add component to layout
-                llNeed.addView(spinnerContainer);
-                llNeed.addView(edtNeedAmount);
-                llNeed.addView(ibRemoveNeed);
-
-            }
+            llNeedsList.addView(createNeedComponents());
 
         });
 
@@ -188,76 +126,18 @@ public class Questionaire extends AppCompatActivity {
         //want components
         LinearLayout llWantsList = findViewById(R.id.llWantsList);
         ImageButton ibAddWant = findViewById(R.id.ibAddWant);
-
-
         ibAddWant.setOnClickListener(v -> {
 
-            LinearLayout llWant = new LinearLayout(getApplicationContext());
-            llWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            llWant.setPadding(0, 0, 10, 0);
-
-            //adding layout to LinearLayout
-            llWantsList.addView(llWant);
-
-
-            //EditText for adding want
-            LinearLayout spinnerWantContainer = new LinearLayout(this);
-            LinearLayout.LayoutParams spContainerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            spContainerLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
-            spinnerWantContainer.setLayoutParams(spContainerLayoutParams);
-
-
-            Spinner spWantList = new Spinner(getApplicationContext());
-            LinearLayout.LayoutParams spWantParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
-            spWantList.setLayoutParams(spWantParams);
-            spWantList.setPadding(dpToPx(10), 0, 0, 0);
-            spWantList.setBackground(edit_backkground);
-
-            spinnerWantContainer.addView(spWantList);
-
-            //initializing spinner component
-            String[] spinnerContent = new String[]{
-                    "Entertainment", "Eating Out", "Travel", "Hobbies", "Clothing", "Other"
-            };
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, spinnerContent);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spWantList.setAdapter(adapter);
-
-            //EditText for adding want amount
-            EditText edtWantAmount = new EditText(getApplicationContext());
-            LinearLayout.LayoutParams editNeedAmountLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            editNeedAmountLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
-            edtWantAmount.setLayoutParams(editNeedAmountLayoutParams);
-            edtWantAmount.setWidth(dpToPx(110));
-            edtWantAmount.setHeight(dpToPx(48));
-            edtWantAmount.setPadding(dpToPx(10), 0, 0, 0);
-            edtWantAmount.setBackground(edit_backkground);
-            edtWantAmount.setTextColor(color);
-            edtWantAmount.setEllipsize(TextUtils.TruncateAt.END);
-            //edtWantAmount.setInputType(InputType.TYPE_CLASS_NUMBER);
-
-            //ImageButton for removing the component
-            ImageButton ibRemoveWant = new ImageButton(this);
-            ibRemoveWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            ibRemoveWant.setBackground(null);
-            ibRemoveWant.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
-            ibRemoveWant.setForegroundGravity(Gravity.CENTER);
-
-
-            //Removing components when ibRemove is clicked
-            ibRemoveWant.setOnClickListener(view -> {
-                llWant.removeView(spinnerWantContainer);
-                llWant.removeView(edtWantAmount);
-                llWant.removeView(ibRemoveWant);
-            });
-
-            //add component to layout
-            llWant.addView(spinnerWantContainer);
-            llWant.addView(edtWantAmount);
-            llWant.addView(ibRemoveWant);
+            llWantsList.addView(createWantComponents());
 
         });
+
+        LinearLayout llInvestmentList = findViewById(R.id.llInvestmentList);
+        ImageButton ibAddInvestment = findViewById(R.id.ibAddInvestment);
+        ibAddInvestment.setOnClickListener(v ->{
+            llInvestmentList.addView(createInvestmentComponent());
+        });
+
 
         DatabaseController dbHelper = new DatabaseController(getApplicationContext());
         Button btnSubmit = findViewById(R.id.btnQuestionnaireSubmit);
@@ -334,7 +214,6 @@ public class Questionaire extends AppCompatActivity {
             }
 
             String edtNeedItem = null;
-
             String spNeedItem = null;
             for (int i = 0; i < llNeedsList.getChildCount(); i++){
                 LinearLayout child = (LinearLayout) llNeedsList.getChildAt(i);
@@ -352,8 +231,48 @@ public class Questionaire extends AppCompatActivity {
                         spNeedItem = subChild.getSelectedItem().toString();
                     }
                 }
-                dbHelper.insert(userEmail, spNeedItem, Double.parseDouble(edtNeedItem), "Expense");
-                //Toast.makeText(this, spNeedItem + " " + edtNeedItem, Toast.LENGTH_SHORT).show();
+                dbHelper.insert(userEmail, spNeedItem, Double.parseDouble(edtNeedItem), "need");
+            }
+
+            //inserting all want component values into database
+            String edtWantItem = null;
+            String spWantItem = null;
+            for (int i = 0; i < llWantsList.getChildCount(); i++){
+                LinearLayout child = (LinearLayout) llWantsList.getChildAt(i);
+                for (int a = 0; a < child.getChildCount(); a++){
+                    if (child.getChildAt(a) instanceof EditText){
+                        EditText subChild = (EditText) child.getChildAt(a);
+                        edtWantItem = subChild.getText().toString();
+                    }
+                    if (child.getChildAt(a) instanceof Spinner){
+                        Spinner subChild = (Spinner) child.getChildAt(a);
+                        spWantItem = subChild.getSelectedItem().toString();
+                    }
+                    if (child.getChildAt(a) instanceof LinearLayout){
+                        Spinner subChild = (Spinner) ((LinearLayout) child.getChildAt(a)).getChildAt(0);
+                        spWantItem = subChild.getSelectedItem().toString();
+                    }
+                }
+                dbHelper.insert(userEmail, spWantItem, Double.parseDouble(edtWantItem), "want");
+            }
+
+            //inserting all investment component values into database
+            String edtInvestmentName = null;
+            String edtInvestmentAmount = null;
+            for (int i = 0; i < llInvestmentList.getChildCount(); i++){
+                LinearLayout child = (LinearLayout) llInvestmentList.getChildAt(i);
+                for (int a = 0; a < child.getChildCount(); a++){
+                    if (child.getChildAt(0) instanceof EditText){
+                        EditText subChild = (EditText) child.getChildAt(0);
+                        edtInvestmentName = subChild.getText().toString();
+                    }
+                    if (child.getChildAt(1) instanceof EditText){
+                        EditText subChild = (EditText) child.getChildAt(1);
+                        edtInvestmentAmount = subChild.getText().toString();
+                    }
+
+                }
+                dbHelper.insert(userEmail, edtInvestmentName, Double.parseDouble(edtInvestmentAmount), "investment");
             }
 
 
@@ -375,9 +294,200 @@ public class Questionaire extends AppCompatActivity {
         return (int) (dp * scale + 0.5f);
     }
 
-    private LinearLayout createWantComponents(){
-        return null;
+    private LinearLayout createNeedComponents(){
+        //drawable for edit component
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable edit_backkground = getResources().getDrawable(R.drawable.edit_text_background);
+        int color = getApplicationContext().getColor(R.color.text);
+
+        LinearLayout llNeed = new LinearLayout(getApplicationContext());
+        llNeed.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        llNeed.setPadding(0, 0, 10, 0);
+
+        //spinner for adding need
+        LinearLayout spinnerContainer = new LinearLayout(this);
+        LinearLayout.LayoutParams needContainerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        needContainerLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
+        spinnerContainer.setLayoutParams(needContainerLayoutParams);
+
+
+        Spinner spNeedList = new Spinner(getApplicationContext());
+        LinearLayout.LayoutParams spNeedParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
+        spNeedList.setLayoutParams(spNeedParams);
+        spNeedList.setPadding(dpToPx(10), 0, 0, 0);
+        spNeedList.setBackground(edit_backkground);
+
+        spinnerContainer.addView(spNeedList);
+
+        //initializing spinner component
+        String[] spinnerContent = new String[]{
+                "Rent", "Utilities", "Food", "Transport", "Clothing", "Debt", "Other"
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, spinnerContent);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spNeedList.setAdapter(adapter);
+
+
+        //EditText for adding want amount
+        EditText edtNeedAmount = new EditText(getApplicationContext());
+        LinearLayout.LayoutParams editNeedAmountLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        editNeedAmountLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
+        edtNeedAmount.setLayoutParams(editNeedAmountLayoutParams);
+        edtNeedAmount.setWidth(dpToPx(110));
+        edtNeedAmount.setHeight(dpToPx(48));
+        edtNeedAmount.setPadding(dpToPx(10), 0, 0, 0);
+        edtNeedAmount.setBackground(edit_backkground);
+        edtNeedAmount.setTextColor(color);
+        edtNeedAmount.setEllipsize(TextUtils.TruncateAt.END);
+
+        //ImageButton for removing the component
+        ImageButton ibRemoveNeed = new ImageButton(this);
+        ibRemoveNeed.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ibRemoveNeed.setBackground(null);
+        ibRemoveNeed.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
+        ibRemoveNeed.setForegroundGravity(Gravity.CENTER);
+
+        //Removing components when ibRemove is clicked
+        ibRemoveNeed.setOnClickListener(view -> {
+            llNeed.removeView(spinnerContainer);
+            llNeed.removeView(edtNeedAmount);
+            llNeed.removeView(ibRemoveNeed);
+        });
+
+        //add component to layout
+        llNeed.addView(spinnerContainer);
+        llNeed.addView(edtNeedAmount);
+        llNeed.addView(ibRemoveNeed);
+
+        return llNeed;
     }
 
+    private LinearLayout createWantComponents(){
+        //drawable for edit component
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable edit_backkground = getResources().getDrawable(R.drawable.edit_text_background);
+        int color = getApplicationContext().getColor(R.color.text);
+
+        LinearLayout llWant = new LinearLayout(getApplicationContext());
+        llWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        llWant.setPadding(0, 0, 10, 0);
+
+        //EditText for adding want
+        LinearLayout spinnerWantContainer = new LinearLayout(this);
+        LinearLayout.LayoutParams spContainerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        spContainerLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
+        spinnerWantContainer.setLayoutParams(spContainerLayoutParams);
+
+
+        Spinner spWantList = new Spinner(getApplicationContext());
+        LinearLayout.LayoutParams spWantParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
+        spWantList.setLayoutParams(spWantParams);
+        spWantList.setPadding(dpToPx(10), 0, 0, 0);
+        spWantList.setBackground(edit_backkground);
+
+        spinnerWantContainer.addView(spWantList);
+
+        //initializing spinner component
+        String[] spinnerContent = new String[]{
+                "Entertainment", "Eating Out", "Travel", "Hobbies", "Clothing", "Other"
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, spinnerContent);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spWantList.setAdapter(adapter);
+
+        //EditText for adding want amount
+        EditText edtWantAmount = new EditText(getApplicationContext());
+        LinearLayout.LayoutParams editNeedAmountLayoutParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
+        editNeedAmountLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
+        edtWantAmount.setLayoutParams(editNeedAmountLayoutParams);
+        edtWantAmount.setWidth(dpToPx(110));
+        edtWantAmount.setHeight(dpToPx(48));
+        edtWantAmount.setPadding(dpToPx(10), 0, 0, 0);
+        edtWantAmount.setBackground(edit_backkground);
+        edtWantAmount.setTextColor(color);
+        edtWantAmount.setEllipsize(TextUtils.TruncateAt.END);
+        edtWantAmount.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        //ImageButton for removing the component
+        ImageButton ibRemoveWant = new ImageButton(this);
+        ibRemoveWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ibRemoveWant.setBackground(null);
+        ibRemoveWant.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
+        ibRemoveWant.setForegroundGravity(Gravity.CENTER);
+
+
+        //Removing components when ibRemove is clicked
+        ibRemoveWant.setOnClickListener(view -> {
+            llWant.removeView(spinnerWantContainer);
+            llWant.removeView(edtWantAmount);
+            llWant.removeView(ibRemoveWant);
+        });
+
+        //add component to layout
+        llWant.addView(spinnerWantContainer);
+        llWant.addView(edtWantAmount);
+        llWant.addView(ibRemoveWant);
+
+        return llWant;
+    }
+
+    private LinearLayout createInvestmentComponent(){
+
+
+        //drawable for edit component
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable edit_backkground = getResources().getDrawable(R.drawable.edit_text_background);
+        int color = getApplicationContext().getColor(R.color.text);
+
+        LinearLayout llInvestment = new LinearLayout(getApplicationContext());
+        llInvestment.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        llInvestment.setPadding(0, 0, 10, 0);
+
+        //EditText for adding investment name
+        EditText edtInvestmentName = new EditText(getApplicationContext());
+        LinearLayout.LayoutParams editInvestmentNameLayoutParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
+        editInvestmentNameLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
+        edtInvestmentName.setLayoutParams(editInvestmentNameLayoutParams);
+        //edtInvestmentName.setWidth(dpToPx(110));
+        //edtInvestmentName.setHeight(dpToPx(48));
+        edtInvestmentName.setPadding(dpToPx(10), 0, 0, 0);
+        edtInvestmentName.setBackground(edit_backkground);
+        edtInvestmentName.setTextColor(color);
+        edtInvestmentName.setEllipsize(TextUtils.TruncateAt.END);
+
+
+        //EditText for adding Investment amount
+        EditText edtInvestmentAmount = new EditText(getApplicationContext());
+        LinearLayout.LayoutParams editNeedAmountLayoutParams = new LinearLayout.LayoutParams(dpToPx(110), dpToPx(48));
+        editNeedAmountLayoutParams.setMargins(0, dpToPx(5), dpToPx(10), 0);
+        edtInvestmentAmount.setLayoutParams(editNeedAmountLayoutParams);
+        edtInvestmentAmount.setWidth(dpToPx(110));
+        edtInvestmentAmount.setHeight(dpToPx(48));
+        edtInvestmentAmount.setPadding(dpToPx(10), 0, 0, 0);
+        edtInvestmentAmount.setBackground(edit_backkground);
+        edtInvestmentAmount.setTextColor(color);
+        edtInvestmentAmount.setEllipsize(TextUtils.TruncateAt.END);
+
+        //ImageButton for removing the component
+        ImageButton ibRemoveWant = new ImageButton(this);
+        ibRemoveWant.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ibRemoveWant.setBackground(null);
+        ibRemoveWant.setImageDrawable(getResources().getDrawable(R.drawable.remove_icon));
+        ibRemoveWant.setForegroundGravity(Gravity.CENTER);
+
+
+        //Removing components when ibRemove is clicked
+        ibRemoveWant.setOnClickListener(view -> {
+            llInvestment.removeView(edtInvestmentName);
+            llInvestment.removeView(edtInvestmentAmount);
+            llInvestment.removeView(ibRemoveWant);
+        });
+
+        //add component to layout
+        llInvestment.addView(edtInvestmentName);
+        llInvestment.addView(edtInvestmentAmount);
+        llInvestment.addView(ibRemoveWant);
+
+        return llInvestment;
+    }
 
 }

@@ -37,8 +37,6 @@ public class SupportPage extends AppCompatActivity {
 
         String[] values = getResources().getStringArray(R.array.my_array);
 
-
-
         //selected number of times
         for (String value: values){
             //container for holding all components
@@ -160,26 +158,6 @@ public class SupportPage extends AppCompatActivity {
     private int dpToPx(int dp) {
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
-    }
-
-    private List<String> test(){
-        Field[] fields = R.string.class.getFields();
-        List<String> stringList = new ArrayList<>();
-
-        for (Field field : fields) {
-            if (field.getType() == int.class) {
-                try {
-                    int resourceId = field.getInt(null);
-                    String value = getResources().getString(resourceId);
-                    stringList.add(value);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return stringList;
-
     }
 
 }

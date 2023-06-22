@@ -31,20 +31,34 @@ public class OverviewPage extends AppCompatActivity {
 
         DatabaseController dbHelper = new DatabaseController(getApplicationContext());
         String userEmail = getIntent().getStringExtra("userEmail");
-        Cursor expenseCursor = dbHelper.getExpensesByEmail(userEmail);
-        LinearLayout linearNeeds= findViewById(R.id.linearNeeds);
 
         double TotalExpenses= 0;
+        LinearLayout linearNeeds= findViewById(R.id.linearNeeds);
+        LinearLayout linearWants = findViewById(R.id.linearWants);
         TextView tvTotalExpense = findViewById(R.id.tvTotalExpense);
-        while (expenseCursor.moveToNext()){
-            @SuppressLint("Range") String Name = expenseCursor.getString(expenseCursor.getColumnIndex("financeName"));
-            @SuppressLint("Range") String Amount = expenseCursor.getString(expenseCursor.getColumnIndex("financeAmount"));
+
+
+        //needs
+        Cursor needCursor = dbHelper.getNeedsByEmail(userEmail);
+        while (needCursor.moveToNext()){
+            @SuppressLint("Range") String Name = needCursor.getString(needCursor.getColumnIndex("financeName"));
+            @SuppressLint("Range") String Amount = needCursor.getString(needCursor.getColumnIndex("financeAmount"));
             TotalExpenses += Double.parseDouble(Amount);
             linearNeeds.addView(createProgressBar(Name, Amount));
         }
 
+        //wants
+        Cursor wantCursor = dbHelper.getWantByEmail(userEmail);
+        while (wantCursor.moveToNext()){
+            @SuppressLint("Range") String Name = wantCursor.getString(wantCursor.getColumnIndex("financeName"));
+            @SuppressLint("Range") String Amount = wantCursor.getString(wantCursor.getColumnIndex("financeAmount"));
+            TotalExpenses += Double.parseDouble(Amount);
+            linearWants.addView(createProgressBar(Name, Amount));
+        }
+
         tvTotalExpense.setText("Expenditure: "+Double.toString(TotalExpenses));
 
+        //investments
         LinearLayout LinearInvest= findViewById(R.id.LinearInvest);
         Cursor InvestmentsCursor = dbHelper.getInvestmentsByEmail(userEmail);
         while (InvestmentsCursor.moveToNext()){

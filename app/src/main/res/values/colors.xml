@@ -10,7 +10,9 @@
     <color name="purple_500">#A020F0</color>
     <color name="purple_200">#000000</color>
     <color name="purple_700">#666666</color>
-    <color name="red">#b30000</color>
+    <color name="red">#F44336</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="green">#8BC34A</color>
 
 
 </resources>

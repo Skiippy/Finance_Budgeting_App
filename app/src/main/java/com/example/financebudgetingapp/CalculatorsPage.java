@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class CalculatorsPage extends AppCompatActivity {
@@ -35,6 +37,15 @@ public class CalculatorsPage extends AppCompatActivity {
         String userEmail = getIntent().getStringExtra("userEmail");
 
         DatabaseController dbHelper = new DatabaseController(getApplicationContext());
+
+        /*int entryCount = 0;
+        Cursor expenseCursor = dbHelper.getExpensesByEmail(userEmail);
+        while (expenseCursor.moveToNext()){
+            String Name = expenseCursor.getString(expenseCursor.getColumnIndex("financeName"));
+            String AMount = expenseCursor.getString(expenseCursor.getColumnIndex("financeAmount"));
+            entryCount++;
+            Toast.makeText(this, Name, Toast.LENGTH_SHORT).show();
+        }*/
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculators_page);
@@ -93,6 +104,8 @@ public class CalculatorsPage extends AppCompatActivity {
         }
 
 
+
+
         ArrayList<Double> allValues = get503020(Double.parseDouble(edtGrossIncome.getText().toString()));
 
         if (!edtGrossIncome.getText().toString().isEmpty()){
@@ -119,6 +132,7 @@ public class CalculatorsPage extends AppCompatActivity {
         if (EmergencyFundCursor != null && EmergencyFundCursor.moveToFirst()) {
             edtMonthlyIncome.setText(EmergencyFundCursor.getString(EmergencyFundCursor.getColumnIndex("financeAmount")));
             EmergencyFundCursor.close();
+
         }
 
         Slider sdNumMonths = findViewById(R.id.sdNumMonths);
@@ -164,22 +178,40 @@ public class CalculatorsPage extends AppCompatActivity {
         Button btnCalculateCarAffordability = findViewById(R.id.btnCalculateCarAffordability);
         //Array for storing edit values
         ArrayList<Integer> edtValues = new ArrayList<>();
-        btnCalculateCarAffordability.setOnClickListener(v ->{
-            for (int i = 0; i < llCostContainer.getChildCount(); i++){
-                EditText child = (EditText) llCostContainer.getChildAt(i);
-                String edtValue = child.getText().toString();
-                if (!edtValue.isEmpty()) {
-                    edtValues.add(Integer.parseInt(edtValue));
+        btnCalculateCarAffordability.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < llCostContainer.getChildCount(); i++){
+                    EditText child = (EditText) llCostContainer.getChildAt(i);
+                    String edtValue = child.getText().toString();
+                    if (!edtValue.isEmpty()) {
+                        edtValues.add(Integer.parseInt(edtValue));
+                    }
                 }
-            }
 
-            int sumEdtValues = 0;
-            for (Integer i: edtValues){
-                sumEdtValues = sumEdtValues + i;
+                int monthlyCarExpenses = 0;
+                for (Integer i: edtValues){
+                    monthlyCarExpenses = monthlyCarExpenses + i;
+                }
+                tvMonthlyCarExpenses.setText(Integer.toString(monthlyCarExpenses));
+                edtValues.clear();
+
+
+                TextView tvMonthlyBudget = findViewById(R.id.tvMonthlyBudget);
+                double monthlyBudget = getMonthlyBudget(userEmail, dbHelper);
+                tvMonthlyBudget.setText(Double.toString(monthlyBudget));
+
+                TextView tvPercentageOfBudget = findViewById(R.id.tvPercentageOfBudget);
+                double percentageOfBudget = (monthlyCarExpenses/monthlyBudget) * 100;
+                tvPercentageOfBudget.setText(Double.toString(percentageOfBudget));
+
+                setCarConclusion(percentageOfBudget);
             }
-            tvMonthlyCarExpenses.setText(Integer.toString(sumEdtValues));
-            edtValues.clear();
         });
+
+
+
+
 
     }
 
@@ -194,6 +226,50 @@ public class CalculatorsPage extends AppCompatActivity {
         values.add(grossIncome * 0.3);
         values.add(grossIncome * 0.2);
         return values;
+    }
+
+    @SuppressLint("Range")
+    private double getMonthlyBudget(String userEmail, DatabaseController dbHelper){
+        double totalExpenses = 0;
+        Cursor needsCursor = dbHelper.getNeedsByEmail(userEmail);
+        while (needsCursor.moveToNext()){
+            @SuppressLint("Range") double needsAmount = Double.parseDouble(needsCursor.getString(needsCursor.getColumnIndex("financeAmount")));
+            totalExpenses += needsAmount;
+        }
+        needsCursor.close();
+
+        Cursor wantsCursor = dbHelper.getNeedsByEmail(userEmail);
+        while (needsCursor.moveToNext()){
+            @SuppressLint("Range") double wantsAmount = Double.parseDouble(wantsCursor.getString(wantsCursor.getColumnIndex("financeAmount")));
+            totalExpenses += wantsAmount;
+        }
+        wantsCursor.close();
+
+        Toast.makeText(this, "Total Expenses: " + totalExpenses, Toast.LENGTH_SHORT).show();
+
+        double totalIncome = 0;
+        Cursor incomeCursor = dbHelper.getIncomeByEmail(userEmail);
+        if (incomeCursor.moveToFirst()){
+            totalIncome = Double.parseDouble(incomeCursor.getString(incomeCursor.getColumnIndex("financeAmount")));
+        }
+
+        Toast.makeText(this, "Total Income: " + totalIncome, Toast.LENGTH_SHORT).show();
+
+        return totalIncome - totalExpenses;
+    }
+
+    private void setCarConclusion(double percentageOfBudget){
+        TextView tvCarConclusion = findViewById(R.id.tvCarConclusion);
+        if (percentageOfBudget < 20){
+            tvCarConclusion.setText("Can Afford");
+            tvCarConclusion.setTextColor(getColor(R.color.green));
+        }else if ((percentageOfBudget > 20) && (percentageOfBudget < 30)){
+            tvCarConclusion.setText("Not Recommended");
+            tvCarConclusion.setTextColor(getColor(R.color.yellow));
+        }else{
+            tvCarConclusion.setText("Cannot Afford");
+            tvCarConclusion.setTextColor(getColor(R.color.red));
+        }
     }
 
 }
