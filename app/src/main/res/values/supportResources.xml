@@ -1,4 +1,16 @@
 <resources>
+    <string-array name="support_titles">
+        <item>Investing</item>
+        <item>Saving</item>
+        <item>50/30/20 Rule</item>
+        <item>Car Affordability</item>
+    </string-array>
+    <string-array name="support_images">
+        <item>bitcoin_icon</item>
+        <item>saving_icon</item>
+        <item>star_icon</item>
+        <item>car_icon</item>
+    </string-array>
     <string-array name="my_array">
         <item><string>Investing, broadly, is putting money to work for a period of time in some sort of project or
             undertaking in order to generate positive returns (i.e., profits that exceed the amount of the initial

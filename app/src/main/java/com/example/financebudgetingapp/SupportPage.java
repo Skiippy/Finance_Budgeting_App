@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -23,11 +24,10 @@ import java.util.List;
 
 public class SupportPage extends AppCompatActivity {
 
-    boolean expanded = false;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String userEmail = getIntent().getStringExtra("userEmail");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.support_page);
 
@@ -36,9 +36,11 @@ public class SupportPage extends AppCompatActivity {
         @SuppressLint("UseCompatLoadingForDrawables") Drawable llContainerDrawable = getResources().getDrawable(R.drawable.support_foreground);
 
         String[] values = getResources().getStringArray(R.array.my_array);
+        String[] supportTitles = getResources().getStringArray(R.array.support_titles);
+        String[] supportImages = getResources().getStringArray(R.array.support_images);
 
         //selected number of times
-        for (String value: values){
+        for (int i = 0; i < values.length; i++){
             //container for holding all components
             LinearLayout llContainer = new LinearLayout(this);
             LinearLayout.LayoutParams containerLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -60,11 +62,11 @@ public class SupportPage extends AppCompatActivity {
 
             ImageView ivHeaderIcon = new ImageView(this);
             ivHeaderIcon.setLayoutParams(new ViewGroup.LayoutParams(dpToPx(24), dpToPx(24)));
-            ivHeaderIcon.setImageDrawable(getResources().getDrawable(R.drawable.investion_icon));
+            ivHeaderIcon.setImageResource(getResources().getIdentifier(supportImages[i], "drawable", getPackageName()));
 
             TextView tvHeading = new TextView(this);
             tvHeading.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            tvHeading.setText("Investing");
+            tvHeading.setText(supportTitles[i]);
             tvHeading.setTextColor(getResources().getColor(R.color.text));
             tvHeading.setGravity(Gravity.CENTER);
 
@@ -101,19 +103,26 @@ public class SupportPage extends AppCompatActivity {
             TextView tvText = new TextView(this);
             tvText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             tvText.setMaxLines(3);
-            tvText.setText(value);
+            tvText.setText(values[i]);
             tvText.setTextColor(getResources().getColor(R.color.text));
 
             //expand tvText's max lines when ibExpand is clicked
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_left = getDrawable(R.drawable.arrow_left);
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards = getDrawable(R.drawable.arrow_left);
+
+
+
+
+            Toast.makeText(this, "variable:" + arrow_left.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "image: " + ibExpandText.getDrawable().toString(), Toast.LENGTH_SHORT).show();
+
             ibExpandText.setOnClickListener(v ->{
-                if (!expanded) {
+                if (ibExpandText.getDrawable().toString().equals(arrow_downwards.toString())){
                     tvText.setMaxLines(Integer.MAX_VALUE);
-                    ibExpandText.setImageDrawable(getResources().getDrawable(R.drawable.arrow_left));
-                    expanded = true;
-                }else{
+                    ibExpandText.setImageDrawable(arrow_left);
+                }else if (ibExpandText.getDrawable().toString().equals(arrow_left.toString())){
                     tvText.setLines(3);
-                    ibExpandText.setImageDrawable(getResources().getDrawable(R.drawable.arrow_downwards));
-                    expanded = false;
+                    ibExpandText.setImageDrawable(arrow_downwards);
                 }
             });
 
@@ -152,7 +161,9 @@ public class SupportPage extends AppCompatActivity {
     }
 
     public void startCalculatorsPage(){
-        startActivity(new Intent(this, CalculatorsPage.class));
+        Intent intent = new Intent(this, CalculatorsPage.class);
+        startActivity(intent);
+
     }
 
     private int dpToPx(int dp) {

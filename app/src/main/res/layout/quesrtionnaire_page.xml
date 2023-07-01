@@ -82,33 +82,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/what_are_your_average_monthly_expenses"
-                    android:textColor="@color/text"
-                    android:labelFor="@+id/edtAverageExpense" />
-
-                <EditText
-                    android:id="@+id/edtAverageExpense"
-                    android:paddingLeft="10dp"
-                    android:layout_width="300dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edit_text_background"
-                    android:inputType="number"
-                    android:autofillHints="" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:text="@string/do_you_have_an_emergency_fund"
                     android:textColor="@color/text" />
 
@@ -304,6 +277,7 @@
                                 android:layout_marginTop="5dp"
                                 android:background="@drawable/edit_text_background"
                                 android:hint="Rent Amount"
+                                android:textColor="@color/text"
                                 android:textColorHint="#33000000"/>
 
                         </LinearLayout>
@@ -374,6 +348,7 @@
                                 android:layout_height="48dp"
                                 android:layout_marginTop="5dp"
                                 android:background="@drawable/edit_text_background"
+                                android:textColor="@color/text"
                                 android:hint="Travel Amount"
                                 android:textColorHint="#33000000"/>
 
@@ -449,6 +424,7 @@
                                 android:layout_marginTop="5dp"
                                 android:background="@drawable/edit_text_background"
                                 android:hint="Investment Amount"
+                                android:textColor="@color/text"
                                 android:textColorHint="#33000000"/>
 
                         </LinearLayout>

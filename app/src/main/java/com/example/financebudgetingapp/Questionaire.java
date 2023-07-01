@@ -49,7 +49,6 @@ public class Questionaire extends AppCompatActivity {
         RadioButton rbEmergencyFundYes = (RadioButton) findViewById(R.id.rbEmergencyYes);
         RadioButton rbEmergencyFundNo = (RadioButton) findViewById(R.id.rbEmergencyNo);
         LinearLayout llEmergencyFund = (LinearLayout) findViewById(R.id.llEmergencyFund);
-        EditText edtAverageExpense = findViewById(R.id.edtAverageExpense);
         EditText edtEmergencyFund = findViewById(R.id.edtEmergencyFund);
 
         //setting Emergency fund components visibility based on radio button inputs
@@ -155,13 +154,6 @@ public class Questionaire extends AppCompatActivity {
             }
             edtAverageSalary.setOnClickListener(edtAverageSalaryListener -> {
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_text_background));
-            });
-
-            if (edtAverageExpense.getText().toString().isEmpty()){
-                edtAverageExpense.setBackground(getDrawable(R.drawable.edit_validation_background));
-            }
-            edtAverageExpense.setOnClickListener(edtAverageExpenseListener ->{
-                edtAverageExpense.setBackground(getDrawable(R.drawable.edit_text_background));
             });
 
             //Validating Retirement Fund Radio Buttons

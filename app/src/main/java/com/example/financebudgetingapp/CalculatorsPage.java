@@ -20,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
 
@@ -38,14 +37,6 @@ public class CalculatorsPage extends AppCompatActivity {
 
         DatabaseController dbHelper = new DatabaseController(getApplicationContext());
 
-        /*int entryCount = 0;
-        Cursor expenseCursor = dbHelper.getExpensesByEmail(userEmail);
-        while (expenseCursor.moveToNext()){
-            String Name = expenseCursor.getString(expenseCursor.getColumnIndex("financeName"));
-            String AMount = expenseCursor.getString(expenseCursor.getColumnIndex("financeAmount"));
-            entryCount++;
-            Toast.makeText(this, Name, Toast.LENGTH_SHORT).show();
-        }*/
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculators_page);
@@ -54,6 +45,7 @@ public class CalculatorsPage extends AppCompatActivity {
         LinearLayout ll50_30_20 = findViewById(R.id.ll50_30_20);
         LinearLayout llEmergencyFundCalculator = findViewById(R.id.llEmergencyFundCalculator);
         LinearLayout llCarAffordabilityCalculator = findViewById(R.id.llCarAffordabilityCalculator);
+        LinearLayout llHouseAffordabilityCalculator = findViewById(R.id.llHouseAffordabilityCalculator);
 
         //spinner code for changing calculators
         Spinner spCalculatorType = findViewById(R.id.spCalculatorType);
@@ -82,6 +74,11 @@ public class CalculatorsPage extends AppCompatActivity {
                 }else{
                     llCarAffordabilityCalculator.setVisibility(View.GONE);
                 }
+                if (position == 3){
+                    llHouseAffordabilityCalculator.setVisibility(View.VISIBLE);
+                }else{
+                    llHouseAffordabilityCalculator.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -97,7 +94,7 @@ public class CalculatorsPage extends AppCompatActivity {
         EditText edtBreakdownWants = findViewById(R.id.edtBreakdownWants);
         EditText edtBreakdownSavingInvesting = findViewById(R.id.edtBreakdownSavingInvesting);
 
-        Cursor fiftyThirtyTwentyCursor = dbHelper.getSalaryByEmail("income", userEmail);
+        Cursor fiftyThirtyTwentyCursor = dbHelper.getIncomeByEmail(userEmail);
         if (fiftyThirtyTwentyCursor != null && fiftyThirtyTwentyCursor.moveToFirst()) {
             edtGrossIncome.setText(fiftyThirtyTwentyCursor.getString(fiftyThirtyTwentyCursor.getColumnIndex("financeAmount")));
             fiftyThirtyTwentyCursor.close();
@@ -127,24 +124,40 @@ public class CalculatorsPage extends AppCompatActivity {
         //Emergency Fund
         EditText edtMonthlyIncome = findViewById(R.id.edtMonthlyIncome);
         TextView tvEmergencyFundAmount = findViewById(R.id.tvEmergencyFund);
+        Slider sdNumMonths = findViewById(R.id.sdNumMonths);
 
         Cursor EmergencyFundCursor = dbHelper.getEmergencyFundByEmail(userEmail);
         if (EmergencyFundCursor != null && EmergencyFundCursor.moveToFirst()) {
-            edtMonthlyIncome.setText(EmergencyFundCursor.getString(EmergencyFundCursor.getColumnIndex("financeAmount")));
+            double emergencyFund = Double.parseDouble(EmergencyFundCursor.getString(EmergencyFundCursor.getColumnIndex("financeAmount")));
+            tvEmergencyFundAmount.setText(Double.toString(emergencyFund));
             EmergencyFundCursor.close();
+
+            Cursor IncomeCursor = dbHelper.getIncomeByEmail(userEmail);
+            if(IncomeCursor.moveToFirst()) {
+                double incomeAmount = Double.parseDouble(IncomeCursor.getString(IncomeCursor.getColumnIndex("financeAmount")));
+                IncomeCursor.close();
+
+                int numMonths = (int) (emergencyFund / incomeAmount);
+                sdNumMonths.setValue(numMonths);
+
+                edtMonthlyIncome.setText("R" + incomeAmount);
+            }
 
         }
 
-        Slider sdNumMonths = findViewById(R.id.sdNumMonths);
+
+
         sdNumMonths.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 if (!edtMonthlyIncome.toString().isEmpty()){
-                    int MonthlyIncome = Integer.parseInt(edtMonthlyIncome.getText().toString());
-                    tvEmergencyFundAmount.setText(Integer.toString((int) (value * MonthlyIncome)));
+                    double MonthlyIncome = Double.parseDouble(edtMonthlyIncome.getText().toString());
+                    tvEmergencyFundAmount.setText("R" + (value * MonthlyIncome));
                 }
             }
         });
+
+
 
         //create on change for edt
 
@@ -152,66 +165,102 @@ public class CalculatorsPage extends AppCompatActivity {
         //Car affordability calculator
         ImageButton ibAddCarCost = findViewById(R.id.ibAddCarCost);
         LinearLayout llCostContainer = findViewById(R.id.llCostsContainer);
-        llCostContainer.setOrientation(LinearLayout.VERTICAL);
-        //editText Background Drawable
-        @SuppressLint("UseCompatLoadingForDrawables") Drawable editTextBackground = getResources().getDrawable(R.drawable.edit_text_background);
-
-        ibAddCarCost.setOnClickListener(v -> {
-            LinearLayout llCarCostContainer = new LinearLayout(getApplicationContext());
-            LinearLayout.LayoutParams llCarCostContainerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            llCarCostContainerParams.setMargins(0, dpToPx(10), dpToPx(30), dpToPx(10));
-            llCarCostContainer.setLayoutParams(llCarCostContainerParams);
-
-            EditText edtCarCost = new EditText(getApplicationContext());
-            edtCarCost.setLayoutParams(new ViewGroup.LayoutParams(dpToPx(200), dpToPx(24)));
-            edtCarCost.setBackground(editTextBackground);
-            edtCarCost.setInputType(InputType.TYPE_CLASS_NUMBER);
-            edtCarCost.setTextColor(getColor(R.color.text));
+        //llCostContainer.setOrientation(LinearLayout.VERTICAL);
 
 
-            llCarCostContainer.addView(edtCarCost);
-            llCostContainer.addView(llCarCostContainer);
+        ibAddCarCost.setOnClickListener(new View.OnClickListener() {
+
+            String[] hintText = {"Insurance", "Maintenance", "Petrol", "Repayments"};
+            int hintTextIndex = 0;
+            int maxCarComponents = 0;
+            @Override
+            public void onClick(View v) {
+                if (maxCarComponents < 4) {
+                    LinearLayout llCarCostContainer = new LinearLayout(getApplicationContext());
+                    LinearLayout.LayoutParams llCarCostContainerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    llCarCostContainerParams.setMargins(0, dpToPx(10), dpToPx(10), 0);
+                    llCarCostContainer.setLayoutParams(llCarCostContainerParams);
+
+                    EditText edtCarCost = new EditText(getApplicationContext());
+                    edtCarCost.setHint(hintText[hintTextIndex]);
+                    edtCarCost.setWidth(dpToPx(200));
+                    edtCarCost.setHeight(dpToPx(24));
+                    edtCarCost.setPadding(dpToPx(2), dpToPx(2), dpToPx(2), dpToPx(2));
+                    edtCarCost.setBackground(getDrawable(R.drawable.edit_text_background));
+                    edtCarCost.setTextColor(getColor(R.color.text));
+                    edtCarCost.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+                    edtCarCost.setEllipsize(TextUtils.TruncateAt.END);
+
+
+                    llCarCostContainer.addView(edtCarCost);
+                    llCostContainer.addView(llCarCostContainer);
+
+                    hintTextIndex++;
+                    maxCarComponents++;
+                }
+            }
         });
 
-        //getting edtCarCost's values
         TextView tvMonthlyCarExpenses = findViewById(R.id.tvMonthlyCarExpenses);
         Button btnCalculateCarAffordability = findViewById(R.id.btnCalculateCarAffordability);
-        //Array for storing edit values
-        ArrayList<Integer> edtValues = new ArrayList<>();
         btnCalculateCarAffordability.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < llCostContainer.getChildCount(); i++){
-                    EditText child = (EditText) llCostContainer.getChildAt(i);
-                    String edtValue = child.getText().toString();
-                    if (!edtValue.isEmpty()) {
-                        edtValues.add(Integer.parseInt(edtValue));
-                    }
-                }
+                double monthlyCarExpenses = sumAllChildren(llCostContainer);
+                ;
+                tvMonthlyCarExpenses.setText(Double.toString(monthlyCarExpenses));
 
-                int monthlyCarExpenses = 0;
-                for (Integer i: edtValues){
-                    monthlyCarExpenses = monthlyCarExpenses + i;
-                }
-                tvMonthlyCarExpenses.setText(Integer.toString(monthlyCarExpenses));
-                edtValues.clear();
-
-
+                //setting monthly budget textview
                 TextView tvMonthlyBudget = findViewById(R.id.tvMonthlyBudget);
                 double monthlyBudget = getMonthlyBudget(userEmail, dbHelper);
-                tvMonthlyBudget.setText(Double.toString(monthlyBudget));
+                tvMonthlyBudget.setText(Double.toString(monthlyBudget - monthlyCarExpenses));
 
+                //setting percentage of budget textview
                 TextView tvPercentageOfBudget = findViewById(R.id.tvPercentageOfBudget);
-                double percentageOfBudget = (monthlyCarExpenses/monthlyBudget) * 100;
+                double percentageOfBudget = (monthlyCarExpenses / monthlyBudget) * 100;
                 tvPercentageOfBudget.setText(Double.toString(percentageOfBudget));
 
                 setCarConclusion(percentageOfBudget);
             }
         });
 
+        //house affordability calculator
+        ImageButton ibAddHouseCost = findViewById(R.id.ibAddHouseCost);
+        LinearLayout llHouseCostsContainer = findViewById(R.id.llHouseCostsContainer);
+        ibAddHouseCost.setOnClickListener(new View.OnClickListener() {
+
+            String[] hintText = {"Repayments", "Insurance", "Maintenance"};
+            int hintTextIndex = 0;
+            int maxHouseComponents = 0;
+            @Override
+            public void onClick(View v) {
+                if (maxHouseComponents < 3) {
+                    LinearLayout llHomeCostContainer = new LinearLayout(getApplicationContext());
+                    LinearLayout.LayoutParams llHouseCostContainerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    llHouseCostContainerParams.setMargins(0, dpToPx(10), dpToPx(10), 0);
+                    llHouseCostsContainer.setLayoutParams(llHouseCostContainerParams);
+
+                    EditText edtHouseCost = new EditText(getApplicationContext());
+                    edtHouseCost.setHint(hintText[hintTextIndex]);
+                    edtHouseCost.setWidth(dpToPx(200));
+                    edtHouseCost.setHeight(dpToPx(24));
+                    edtHouseCost.setPadding(dpToPx(2), dpToPx(2), dpToPx(2), dpToPx(2));
+                    edtHouseCost.setBackground(getDrawable(R.drawable.edit_text_background));
+                    edtHouseCost.setTextColor(getColor(R.color.text));
+                    edtHouseCost.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+                    edtHouseCost.setEllipsize(TextUtils.TruncateAt.END);
 
 
+                    llHouseCostsContainer.addView(edtHouseCost);
+                    llHomeCostContainer.addView(llHouseCostsContainer);
 
+                    hintTextIndex++;
+                    maxHouseComponents++;
+                }
+            }
+        });
 
     }
 
@@ -245,15 +294,11 @@ public class CalculatorsPage extends AppCompatActivity {
         }
         wantsCursor.close();
 
-        Toast.makeText(this, "Total Expenses: " + totalExpenses, Toast.LENGTH_SHORT).show();
-
         double totalIncome = 0;
         Cursor incomeCursor = dbHelper.getIncomeByEmail(userEmail);
         if (incomeCursor.moveToFirst()){
             totalIncome = Double.parseDouble(incomeCursor.getString(incomeCursor.getColumnIndex("financeAmount")));
         }
-
-        Toast.makeText(this, "Total Income: " + totalIncome, Toast.LENGTH_SHORT).show();
 
         return totalIncome - totalExpenses;
     }
@@ -270,6 +315,34 @@ public class CalculatorsPage extends AppCompatActivity {
             tvCarConclusion.setText("Cannot Afford");
             tvCarConclusion.setTextColor(getColor(R.color.red));
         }
+    }
+
+    private double sumAllChildren(LinearLayout container){
+
+        double sumAllValue = 0;
+
+        for (int i = 0; i < container.getChildCount(); i++){
+            if (container.getChildAt(i) instanceof EditText) {
+                EditText childEdit = (EditText) container.getChildAt(i);
+                if (!childEdit.getText().toString().isEmpty()) {
+                    sumAllValue += Double.parseDouble(childEdit.getText().toString());
+                }
+            }
+            if (container.getChildAt(i) instanceof  LinearLayout){
+                LinearLayout childLayout = (LinearLayout) container.getChildAt(i);
+                for (int a = 0; a < childLayout.getChildCount(); a ++){
+                    if (childLayout.getChildAt(a) instanceof EditText){
+                        EditText subChildEdit = (EditText) container.getChildAt(a);
+                        if (!subChildEdit.getText().toString().isEmpty()){
+                            sumAllValue += Double.parseDouble(subChildEdit.getText().toString());
+                        }
+                    }
+                }
+            }
+        }
+
+
+        return sumAllValue;
     }
 
 }
