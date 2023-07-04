@@ -18,31 +18,13 @@
         android:orientation="horizontal">
 
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/support"
             android:textColor="@color/text"
             android:textAlignment="center"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:id="@+id/ibProfileButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/profile_icon"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/profile_icon" />
 
 
 
@@ -66,130 +48,7 @@
             android:id="@+id/llBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/support_foreground"
-            android:padding="10dp"
-            android:layout_marginBottom="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/investion_icon"
-                    android:contentDescription="@string/bitcoin_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/investing"
-                    android:textColor="@color/text"
-                    android:gravity="center"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-
-                <ImageButton
-                    android:id="@+id/btnExpandText0"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/arrow_downwards"
-                    android:layout_marginRight="5dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/descriptionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="3"
-                    android:text="nothing Yet"
-                    android:textColor="@color/text"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/support_foreground"
-                android:padding="10dp"
-                android:layout_marginBottom="20dp">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/saving_icon"
-                        android:contentDescription="@string/bitcoin_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Saving"
-                        android:textColor="@color/text"/>
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
-
-                    <ImageButton
-                        android:id="@+id/btnExpandText1"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrow_downwards"
-                        android:layout_marginRight="5dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"/>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="3"
-                        android:text="Nothing yet"
-                        android:textColor="@color/text"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:orientation="vertical"/>
 
 
     </ScrollView>

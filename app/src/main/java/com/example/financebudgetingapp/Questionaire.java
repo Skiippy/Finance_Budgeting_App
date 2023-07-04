@@ -147,6 +147,7 @@ public class Questionaire extends AppCompatActivity {
             //EditText AverageSalary
             if (edtAverageSalary.getText().toString().isEmpty()){
                 edtAverageSalary.setBackground(getDrawable(R.drawable.edit_validation_background));
+                validCredentials = false;
             }else{
                 validCredentials = true;
                 double AverageSalary = Double.parseDouble(edtAverageSalary.getText().toString());
@@ -160,6 +161,7 @@ public class Questionaire extends AppCompatActivity {
             if (!rbRetirementFundNo.isChecked() && !rbRetirementFundYes.isChecked()){
                 rbRetirementFundYes.setButtonTintList(getColorStateList(R.color.red));
                 rbRetirementFundNo.setButtonTintList(getColorStateList(R.color.red));
+                validCredentials = false;
             }
             rbRetirementFundNo.setOnClickListener(rbRetirementNoListener -> {
                 rbRetirementFundNo.setButtonTintList(getColorStateList(R.color.text));
@@ -193,6 +195,7 @@ public class Questionaire extends AppCompatActivity {
             if (!edtEmergencyFund.getText().toString().equals("")) {
                 double EmergencyFund = Double.parseDouble(edtEmergencyFund.getText().toString());
                 dbHelper.insert(userEmail, "Emergency Fund", EmergencyFund, "Emergency Fund");
+
             }else{
                 edtEmergencyFund.setBackground(getDrawable(R.drawable.edit_validation_background));
             }

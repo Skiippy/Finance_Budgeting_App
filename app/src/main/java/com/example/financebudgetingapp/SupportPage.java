@@ -108,19 +108,15 @@ public class SupportPage extends AppCompatActivity {
 
             //expand tvText's max lines when ibExpand is clicked
             @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_left = getDrawable(R.drawable.arrow_left);
-            @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards = getDrawable(R.drawable.arrow_left);
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable arrow_downwards = getDrawable(R.drawable.arrow_downwards);
 
 
-
-
-            Toast.makeText(this, "variable:" + arrow_left.toString(), Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "image: " + ibExpandText.getDrawable().toString(), Toast.LENGTH_SHORT).show();
 
             ibExpandText.setOnClickListener(v ->{
-                if (ibExpandText.getDrawable().toString().equals(arrow_downwards.toString())){
+                if (tvText.getMaxLines() == 3){
                     tvText.setMaxLines(Integer.MAX_VALUE);
                     ibExpandText.setImageDrawable(arrow_left);
-                }else if (ibExpandText.getDrawable().toString().equals(arrow_left.toString())){
+                }else{
                     tvText.setLines(3);
                     ibExpandText.setImageDrawable(arrow_downwards);
                 }
@@ -137,13 +133,11 @@ public class SupportPage extends AppCompatActivity {
         //navigation Components
         ImageView btnSupportPage = (ImageView) findViewById(R.id.btnHomePage);
         ImageView btnGoalsPage = (ImageView) findViewById(R.id.btnGoalsPage);
-        ImageButton ibProfileButton = (ImageButton) findViewById(R.id.ibProfileButton);
         ImageView ibCalculatorsPage = (ImageView) findViewById(R.id.ibCalculatorsPage);
 
         //navigation
         btnSupportPage.setOnClickListener(v -> startOverviewPage());
         btnGoalsPage.setOnClickListener(v -> startGoalsPage());
-        ibProfileButton.setOnClickListener(v -> startSupport());
         ibCalculatorsPage.setOnClickListener(v -> startCalculatorsPage());
 
     }
@@ -154,10 +148,6 @@ public class SupportPage extends AppCompatActivity {
 
     public void startGoalsPage(){
         startActivity(new Intent(this, GoalsPage.class));
-    }
-
-    public void startSupport(){
-        startActivity(new Intent(this, SupportPage.class));
     }
 
     public void startCalculatorsPage(){

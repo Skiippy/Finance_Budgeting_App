@@ -19,12 +19,10 @@ public class GoalsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goals_page);
 
-        ImageButton ibProfileButton = findViewById(R.id.ibProfileButton);
         ImageView btnSupportPage = findViewById(R.id.btnSupportPage);
         ImageView btnHomePage = findViewById(R.id.btnHomePage);
         ImageView addbtn_goals = findViewById(R.id.addbtn_goals);
 
-        ibProfileButton.setOnClickListener(v -> startProfilePage());
         btnSupportPage.setOnClickListener(v -> startSupportPage());
         btnHomePage.setOnClickListener(v -> startOverviewPage());
         addbtn_goals.setOnClickListener(v -> startGoalPage());
@@ -53,10 +51,6 @@ public class GoalsPage extends AppCompatActivity {
     public void startSupportPage(){
         Intent intent = new Intent(this, SupportPage.class);
         startActivity(intent);
-    }
-    public void startProfilePage() {
-        startActivity(new Intent(this, ProfilePage.class));
-
     }
     public void startOverviewPage(){
         startActivity(new Intent(this, OverviewPage.class));

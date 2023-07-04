@@ -140,7 +140,7 @@ public class CalculatorsPage extends AppCompatActivity {
                 int numMonths = (int) (emergencyFund / incomeAmount);
                 sdNumMonths.setValue(numMonths);
 
-                edtMonthlyIncome.setText("R" + incomeAmount);
+                edtMonthlyIncome.setText((int) incomeAmount);
             }
 
         }
@@ -208,26 +208,30 @@ public class CalculatorsPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double monthlyCarExpenses = sumAllChildren(llCostContainer);
-                ;
-                tvMonthlyCarExpenses.setText(Double.toString(monthlyCarExpenses));
+
+                tvMonthlyCarExpenses.setText("R " + monthlyCarExpenses);
 
                 //setting monthly budget textview
                 TextView tvMonthlyBudget = findViewById(R.id.tvMonthlyBudget);
                 double monthlyBudget = getMonthlyBudget(userEmail, dbHelper);
-                tvMonthlyBudget.setText(Double.toString(monthlyBudget - monthlyCarExpenses));
+                tvMonthlyBudget.setText("R " + (monthlyBudget - monthlyCarExpenses));
 
                 //setting percentage of budget textview
                 TextView tvPercentageOfBudget = findViewById(R.id.tvPercentageOfBudget);
-                double percentageOfBudget = (monthlyCarExpenses / monthlyBudget) * 100;
-                tvPercentageOfBudget.setText(Double.toString(percentageOfBudget));
+                double percentageOfBudget = Math.round((monthlyCarExpenses / monthlyBudget) * 100);
+                tvPercentageOfBudget.setText(percentageOfBudget + "%");
 
-                setCarConclusion(percentageOfBudget);
+                TextView tvCarConclusion = findViewById(R.id.tvCarConclusion);
+                setConclusion(percentageOfBudget, tvCarConclusion);
             }
         });
 
         //house affordability calculator
         ImageButton ibAddHouseCost = findViewById(R.id.ibAddHouseCost);
         LinearLayout llHouseCostsContainer = findViewById(R.id.llHouseCostsContainer);
+        Button btnCalculateHouseAffordability = findViewById(R.id.btnCalculateHouseAffordability);
+        TextView tvMonthlyHouseExpenses = findViewById(R.id.tvMonthlyHouseExpenses);
+        TextView tvHouseMonthlyBudget = findViewById(R.id.tvHouseMonthlyBudget);
         ibAddHouseCost.setOnClickListener(new View.OnClickListener() {
 
             String[] hintText = {"Repayments", "Insurance", "Maintenance"};
@@ -237,9 +241,9 @@ public class CalculatorsPage extends AppCompatActivity {
             public void onClick(View v) {
                 if (maxHouseComponents < 3) {
                     LinearLayout llHomeCostContainer = new LinearLayout(getApplicationContext());
-                    LinearLayout.LayoutParams llHouseCostContainerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    llHouseCostContainerParams.setMargins(0, dpToPx(10), dpToPx(10), 0);
-                    llHouseCostsContainer.setLayoutParams(llHouseCostContainerParams);
+                    LinearLayout.LayoutParams llHomeCostContainerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    llHomeCostContainerParams.setMargins(0, dpToPx(10), dpToPx(10), 0);
+                    llHomeCostContainer.setLayoutParams(llHomeCostContainerParams);
 
                     EditText edtHouseCost = new EditText(getApplicationContext());
                     edtHouseCost.setHint(hintText[hintTextIndex]);
@@ -253,13 +257,29 @@ public class CalculatorsPage extends AppCompatActivity {
                     edtHouseCost.setEllipsize(TextUtils.TruncateAt.END);
 
 
-                    llHouseCostsContainer.addView(edtHouseCost);
-                    llHomeCostContainer.addView(llHouseCostsContainer);
+                    llHomeCostContainer.addView(edtHouseCost);
+                    llHouseCostsContainer.addView(llHomeCostContainer);
 
                     hintTextIndex++;
                     maxHouseComponents++;
                 }
             }
+        });
+
+        btnCalculateHouseAffordability.setOnClickListener(v ->{
+
+            double sumAllHouseCosts = sumAllChildren(llHouseCostsContainer);
+
+            tvMonthlyHouseExpenses.setText("R " + sumAllHouseCosts);
+            tvHouseMonthlyBudget.setText("R " + getMonthlyBudget(userEmail, dbHelper));
+
+            TextView tvHousePercentageOfBudget = findViewById(R.id.tvHousePercentageOfBudget);
+            double percentageOfBudget = (sumAllHouseCosts / getMonthlyBudget(userEmail, dbHelper)) * 100;
+            tvHousePercentageOfBudget.setText(percentageOfBudget + "%");
+
+            TextView tvHouseConclusion = findViewById(R.id.tvHouseConclusion);
+            setConclusion(percentageOfBudget, tvHouseConclusion);
+
         });
 
     }
@@ -303,44 +323,35 @@ public class CalculatorsPage extends AppCompatActivity {
         return totalIncome - totalExpenses;
     }
 
-    private void setCarConclusion(double percentageOfBudget){
-        TextView tvCarConclusion = findViewById(R.id.tvCarConclusion);
+    private void setConclusion(double percentageOfBudget, TextView tvConclusion){
         if (percentageOfBudget < 20){
-            tvCarConclusion.setText("Can Afford");
-            tvCarConclusion.setTextColor(getColor(R.color.green));
+            tvConclusion.setText("Can Afford");
+            tvConclusion.setTextColor(getColor(R.color.green));
         }else if ((percentageOfBudget > 20) && (percentageOfBudget < 30)){
-            tvCarConclusion.setText("Not Recommended");
-            tvCarConclusion.setTextColor(getColor(R.color.yellow));
+            tvConclusion.setText("Not Recommended");
+            tvConclusion.setTextColor(getColor(R.color.yellow));
         }else{
-            tvCarConclusion.setText("Cannot Afford");
-            tvCarConclusion.setTextColor(getColor(R.color.red));
+            tvConclusion.setText("Cannot Afford");
+            tvConclusion.setTextColor(getColor(R.color.red));
         }
     }
 
-    private double sumAllChildren(LinearLayout container){
-
+    private double sumAllChildren(LinearLayout container) {
         double sumAllValue = 0;
 
-        for (int i = 0; i < container.getChildCount(); i++){
-            if (container.getChildAt(i) instanceof EditText) {
-                EditText childEdit = (EditText) container.getChildAt(i);
+        for (int i = 0; i < container.getChildCount(); i++) {
+            View child = container.getChildAt(i);
+
+            if (child instanceof EditText) {
+                EditText childEdit = (EditText) child;
                 if (!childEdit.getText().toString().isEmpty()) {
                     sumAllValue += Double.parseDouble(childEdit.getText().toString());
                 }
-            }
-            if (container.getChildAt(i) instanceof  LinearLayout){
-                LinearLayout childLayout = (LinearLayout) container.getChildAt(i);
-                for (int a = 0; a < childLayout.getChildCount(); a ++){
-                    if (childLayout.getChildAt(a) instanceof EditText){
-                        EditText subChildEdit = (EditText) container.getChildAt(a);
-                        if (!subChildEdit.getText().toString().isEmpty()){
-                            sumAllValue += Double.parseDouble(subChildEdit.getText().toString());
-                        }
-                    }
-                }
+            } else if (child instanceof LinearLayout) {
+                double subChildSum = sumAllChildren((LinearLayout) child);
+                sumAllValue += subChildSum;
             }
         }
-
 
         return sumAllValue;
     }
